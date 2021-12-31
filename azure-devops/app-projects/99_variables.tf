@@ -86,7 +86,7 @@ locals {
   docker_registry_name = replace("acr-${var.prefix}-${var.env}", "-", "")
   
   # Service endpoints
-  srv_endpoint_docker_registry_lab = "acrdocker-${var.prefix}-lab"
+  srv_endpoint_docker_registry_lab = "srvendpoint-acrdocker-${var.prefix}-${var.env}"
 
   #tfsec:ignore:GEN003
   #tfsec:ignore:GEN002

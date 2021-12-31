@@ -18,6 +18,12 @@ provider "azurerm" {
 
 provider "azurerm" {
   features {}
+  alias           = "lab"
+  subscription_id = module.secrets.values["LAB-SUBSCRIPTION-ID"].value
+}
+
+provider "azurerm" {
+  features {}
   alias           = "dev"
   subscription_id = module.secrets.values["DEV-SUBSCRIPTION-ID"].value
 }
