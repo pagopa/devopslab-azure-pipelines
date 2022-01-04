@@ -71,7 +71,7 @@ locals {
   azure_devops_org = "pagopaspa"
 
   env_location_short           = "${var.env}-${var.location_short}"
-  project                      = "${var.prefix}-${var.env_short}"
+  project                      = "${var.prefix}-${var.env}"
 
   # 🔐 KV
   lab_key_vault_name = "kv-${var.prefix}-${var.env}-${var.location_short}"
