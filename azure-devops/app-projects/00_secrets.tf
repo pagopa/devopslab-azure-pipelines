@@ -5,8 +5,8 @@ module "secrets" {
   key_vault_name = local.lab_key_vault_name
 
   secrets = [
-    # "azure-devops-github-ro-TOKEN",
-    # "azure-devops-github-pr-TOKEN",
+    "azure-devops-github-ro-TOKEN",
+    "azure-devops-github-pr-TOKEN",
     # "azure-devops-github-EMAIL",
     # "azure-devops-github-USERNAME",
     # "DOCKER-REGISTRY-PAGOPA-USER",
