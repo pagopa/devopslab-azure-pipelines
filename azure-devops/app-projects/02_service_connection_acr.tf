@@ -1,5 +1,5 @@
 # 🟢 LAB service connection for azure container registry 
-resource "azuredevops_serviceendpoint_azurecr" "azurecr-lab" {
+resource "azuredevops_serviceendpoint_azurecr" "azurecr_lab" {
   depends_on = [azuredevops_project.project]
 
   project_id     = azuredevops_project.project.id
