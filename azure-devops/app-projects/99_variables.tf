@@ -84,6 +84,12 @@ locals {
   # 📦 ACR LAB DOCKER
   docker_rg_name = "rg-docker-${var.env}"
   docker_registry_name = replace("acr-${var.prefix}-${var.env}", "-", "")
+
+  lab_docker_rg_name = "rg-docker-lab"
+  lab_docker_registry_name = replace("acr-${var.prefix}-lab", "-", "")
+
+  # Agent pool
+  lab_agent_pool = "${var.project_name_prefix}-lab-linux"
   
   # Service endpoints
   srv_endpoint_docker_registry_lab = "srvendpoint-acrdocker-${var.prefix}-${var.env}"
@@ -91,4 +97,6 @@ locals {
   #tfsec:ignore:GEN003
   #tfsec:ignore:GEN002
   tlscert_renew_token = "v1"
+
+
 }
