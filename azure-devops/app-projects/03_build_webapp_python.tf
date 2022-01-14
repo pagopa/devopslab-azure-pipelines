@@ -20,7 +20,7 @@ variable "devops-webapp-python" {
 locals {
   # global vars
   devops-webapp-python-variables = {
-    dockerfile                       = "Dockerfiles/app.dockerfile"
+    dockerfile                       = "Dockerfile"
   }
   # global secrets
   devops-webapp-python-variables_secret = {
@@ -50,7 +50,7 @@ locals {
   }
   # docker build
   devops-webapp-python-variables_docker_build = {
-    k8s_image_repository_name           = replace(var.devops-webapp-python.repository.name, "-", "")
+    docker_image_repository_name           = replace(var.devops-webapp-python.repository.name, "-", "")
     lab_container_registry_service_conn = azuredevops_serviceendpoint_azurecr.azurecr_lab.service_endpoint_name
     lab_container_registry_name         = "${local.lab_docker_registry_name}.azurecr.io"
     lab_agent_pool                      = "${local.lab_agent_pool}"
