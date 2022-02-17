@@ -84,11 +84,11 @@ variable "project_name_prefix" {
 locals {
 
   azure_devops_org = "pagopaspa"
-  project                      = "${var.prefix}-${var.env_short}"
-  
+  project          = "${var.prefix}-${var.env_short}"
 
 
-  env_location_short           = "${var.env}-${var.location_short}"
+
+  env_location_short = "${var.env}-${var.location_short}"
 
   # ☁️ VNET
   vnet_resource_group_name = "${local.project}-vnet-rg"
@@ -97,10 +97,10 @@ locals {
   # 📦 ACR LAB DOCKER
   docker_rg_name       = "${local.project}-dockerreg-rg"
   docker_registry_name = replace("${var.prefix}-${var.env_short}-${var.location_short}-acr", "-", "")
-  
+
   # Agent pool
   vm_agent_pool = "${var.project_name_prefix}-dev-linux"
-  
+
   # Service endpoints
   srv_endpoint_docker_registry_lab = "srvendpoint-acrdocker-${var.prefix}-${var.env}"
 

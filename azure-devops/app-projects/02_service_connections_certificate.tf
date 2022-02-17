@@ -22,7 +22,7 @@ module "LAB-TLS-CERT-SERVICE-CONN" {
 }
 
 data "azurerm_key_vault" "kv_lab" {
-  provider            = azurerm.lab
+  provider = azurerm.lab
 
   name                = var.key_vault_name
   resource_group_name = var.key_vault_rg_name

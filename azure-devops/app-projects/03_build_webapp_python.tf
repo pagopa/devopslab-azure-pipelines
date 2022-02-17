@@ -1,18 +1,18 @@
 variable "devops-webapp-k8s" {
   default = {
     repository = {
-      organization    = "pagopa"
-      name            = "devops-webapp-k8s"
-      branch_name     = "main"
-      pipelines_path  = ".devops"
-      pipeline_yml_filename    = "docker-build.yml"
-      pipeline_name   = "devops-webapp-k8s.docker-build"
-      yml_prefix_name = null
+      organization          = "pagopa"
+      name                  = "devops-webapp-k8s"
+      branch_name           = "main"
+      pipelines_path        = ".devops"
+      pipeline_yml_filename = "docker-build.yml"
+      pipeline_name         = "devops-webapp-k8s.docker-build"
+      yml_prefix_name       = null
     }
     pipeline = {
-      enable_code_review = true
+      enable_code_review  = true
       enable_docker_build = true
-      enable_deploy      = true
+      enable_deploy       = true
     }
   }
 }
@@ -20,7 +20,7 @@ variable "devops-webapp-k8s" {
 locals {
   # global vars
   devops-webapp-k8s-variables = {
-    dockerfile                       = "Dockerfile"
+    dockerfile = "Dockerfile"
   }
   # global secrets
   devops-webapp-k8s-variables_secret = {
@@ -42,7 +42,7 @@ locals {
     k8s_image_repository_name           = replace(var.devops-webapp-k8s.repository.name, "-", "")
     lab_container_registry_service_conn = azuredevops_serviceendpoint_azurecr.azurecr_lab.service_endpoint_name
     lab_container_registry_name         = "${local.docker_registry_name}.azurecr.io"
-    vm_agent_pool                      = "${local.vm_agent_pool}"
+    vm_agent_pool                       = "${local.vm_agent_pool}"
   }
   # deploy secrets
   devops-webapp-k8s-variables_secret_deploy = {
@@ -50,10 +50,10 @@ locals {
   }
   # docker build
   devops-webapp-k8s-variables_docker_build = {
-    docker_image_repository_name           = replace(var.devops-webapp-k8s.repository.name, "-", "")
+    docker_image_repository_name        = replace(var.devops-webapp-k8s.repository.name, "-", "")
     lab_container_registry_service_conn = azuredevops_serviceendpoint_azurecr.azurecr_lab.service_endpoint_name
     lab_container_registry_name         = "${local.docker_registry_name}.azurecr.io"
-    vm_agent_pool                      = "${local.vm_agent_pool}"
+    vm_agent_pool                       = "${local.vm_agent_pool}"
   }
   # deploy secrets
   devops-webapp-k8s-variables_secret_docker_build = {
