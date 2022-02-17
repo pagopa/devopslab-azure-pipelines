@@ -8,7 +8,7 @@ resource "azuredevops_serviceendpoint_azurecr" "azurecr_lab" {
   resource_group = local.docker_rg_name
   azurecr_name          = local.docker_registry_name
 
-  azurecr_subscription_name = var.lab_subscription_name
+  azurecr_subscription_name = var.subscription_name
   azurecr_spn_tenantid      = module.secrets.values["TENANTID"].value
   azurecr_subscription_id   = module.secrets.values["LAB-SUBSCRIPTION-ID"].value
 }
