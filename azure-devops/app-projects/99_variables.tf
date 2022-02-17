@@ -54,9 +54,24 @@ variable "tags" {
   }
 }
 
+#
+# 🔐 Key Vault
+#
+variable "key_vault_name" {
+  type        = string
+  description = "Key Vault name"
+  default     = ""
+}
+
+variable "key_vault_rg_name" {
+  type        = string
+  default     = ""
+  description = "Key Vault - rg name"
+}
+
 #--------------------------------------------------------------------------------------------------
 
-variable "lab_subscription_name" {
+variable "subscription_name" {
   type        = string
   description = "LAB Subscription name"
 }
@@ -69,27 +84,22 @@ variable "project_name_prefix" {
 locals {
 
   azure_devops_org = "pagopaspa"
+  project                      = "${var.prefix}-${var.env_short}"
+  
+
 
   env_location_short           = "${var.env}-${var.location_short}"
-  project                      = "${var.prefix}-${var.env}"
-
-  # 🔐 KV
-  lab_key_vault_name = "kv-${var.prefix}-${var.env}-${var.location_short}"
-
-  lab_key_vault_resource_group = "rg-${var.prefix}-sec-${local.env_location_short}"
 
   # ☁️ VNET
-  lab_vnet_rg = "rg-vnet-${local.project}"
+  vnet_resource_group_name = "${local.project}-vnet-rg"
+  vnet_name                = "${local.project}-vnet"
 
   # 📦 ACR LAB DOCKER
-  docker_rg_name = "rg-docker-${var.env}"
-  docker_registry_name = replace("acr-${var.prefix}-${var.env}", "-", "")
-
-  lab_docker_rg_name = "rg-docker-lab"
-  lab_docker_registry_name = replace("acr-${var.prefix}-lab", "-", "")
-
+  docker_rg_name       = "${local.project}-dockerreg-rg"
+  docker_registry_name = replace("${var.prefix}-${var.env_short}-${var.location_short}-acr", "-", "")
+  
   # Agent pool
-  lab_agent_pool = "${var.project_name_prefix}-lab-linux"
+  vm_agent_pool = "${var.project_name_prefix}-dev-linux"
   
   # Service endpoints
   srv_endpoint_docker_registry_lab = "srvendpoint-acrdocker-${var.prefix}-${var.env}"
@@ -97,6 +107,4 @@ locals {
   #tfsec:ignore:GEN003
   #tfsec:ignore:GEN002
   tlscert_renew_token = "v1"
-
-
 }

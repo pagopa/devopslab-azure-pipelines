@@ -14,18 +14,18 @@ module "LAB-TLS-CERT-SERVICE-CONN" {
   name              = "cert-tls-${local.project}"
   tenant_id         = module.secrets.values["TENANTID"].value
   subscription_id   = module.secrets.values["LAB-SUBSCRIPTION-ID"].value
-  subscription_name = var.lab_subscription_name
+  subscription_name = var.subscription_name
 
-  credential_subcription              = var.lab_subscription_name
-  credential_key_vault_name           = local.lab_key_vault_name
-  credential_key_vault_resource_group = local.lab_key_vault_resource_group
+  credential_subcription              = var.subscription_name
+  credential_key_vault_name           = var.key_vault_name
+  credential_key_vault_resource_group = var.key_vault_rg_name
 }
 
 data "azurerm_key_vault" "kv_lab" {
   provider            = azurerm.lab
 
-  name                = local.lab_key_vault_name
-  resource_group_name = local.lab_key_vault_resource_group
+  name                = var.key_vault_name
+  resource_group_name = var.key_vault_rg_name
 }
 
 resource "azurerm_key_vault_access_policy" "LAB-TLS-CERT-SERVICE-CONN_kv_lab" {
