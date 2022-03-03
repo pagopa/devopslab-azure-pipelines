@@ -7,6 +7,9 @@ module "secrets" {
   secrets = [
     "azure-devops-github-ro-TOKEN",
     "azure-devops-github-pr-TOKEN",
+    "aks-azure-devops-sa-token",
+    "aks-azure-devops-sa-cacrt",
+    "aks-apiserver-url",
     # "azure-devops-github-EMAIL",
     # "azure-devops-github-USERNAME",
     # "DOCKER-REGISTRY-PAGOPA-USER",
