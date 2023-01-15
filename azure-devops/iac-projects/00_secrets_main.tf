@@ -9,10 +9,9 @@ module "secrets" {
   key_vault_name = local.dev_key_vault_azdo_name
 
   secrets = [
-    "DANGER-GITHUB-API-TOKEN",
     "azure-devops-github-ro-TOKEN",
-    "azure-devops-github-rw-TOKEN",
     "azure-devops-github-pr-TOKEN",
+    # "azure-devops-github-rw-TOKEN",
     "azure-devops-github-EMAIL",
     "azure-devops-github-USERNAME",
     "TENANTID",
