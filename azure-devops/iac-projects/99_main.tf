@@ -1,12 +1,12 @@
 terraform {
-  required_version = ">= 1.0.11"
+  required_version = ">= 1.3.5"
   required_providers {
     azuredevops = {
       source  = "microsoft/azuredevops"
-      version = ">= 0.1.4"
+      version = ">= 0.2.1"
     }
     azurerm = {
-      version = ">= 2.90.0"
+      version = ">= 2.99.0"
     }
   }
   backend "azurerm" {}
@@ -14,4 +14,10 @@ terraform {
 
 provider "azurerm" {
   features {}
+}
+
+provider "azurerm" {
+  features {}
+  alias           = "dev"
+  subscription_id = module.secrets.values["DEV-SUBSCRIPTION-ID"].value
 }
