@@ -1,7 +1,7 @@
 locals {
   prefix           = "devopslab"
   azure_devops_org = "pagopaspa"
-  project_name = "devops-platform-iac-projects"
+  project_name     = "devops-platform-iac-projects"
 
   # Service connections/ End points
   srv_endpoint_github_ro = "io-azure-devops-github-ro"
@@ -9,12 +9,12 @@ locals {
   srv_endpoint_github_pr = "io-azure-devops-github-pr"
 
   # 🔐 KV AZDO
-  dev_key_vault_azdo_name  = "dvopla-d-neu-kv"
-  dev_key_vault_resource_group  = "dvopla-d-sec-rg"
+  dev_key_vault_azdo_name      = "dvopla-d-neu-kv"
+  dev_key_vault_resource_group = "dvopla-d-sec-rg"
 
   # 🔐 KV Domain
-  dev_diego_key_vault_resource_group  = "dvopla-d-diego-sec-rg"
-  dev_diego_key_vault_name = "dvopla-d-diego-kv"
+  dev_diego_key_vault_resource_group = "dvopla-d-diego-sec-rg"
+  dev_diego_key_vault_name           = "dvopla-d-diego-kv"
 
 }
 
