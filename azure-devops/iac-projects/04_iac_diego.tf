@@ -56,7 +56,7 @@
 #   count  = var.diego_iac.pipeline.enable_code_review == true ? 1 : 0
 #   path   = var.diego_iac.pipeline.path
 
-#   project_id                   = azuredevops_project.project.id
+#   project_id                   = data.azuredevops_project.project.id
 #   repository                   = var.diego_iac.repository
 #   github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-pr.id
 
@@ -87,7 +87,7 @@
 #   count  = var.diego_iac.pipeline.enable_deploy == true ? 1 : 0
 #   path   = var.diego_iac.pipeline.path
 
-#   project_id                   = azuredevops_project.project.id
+#   project_id                   = data.azuredevops_project.project.id
 #   repository                   = var.diego_iac.repository
 #   github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-pr.id
 

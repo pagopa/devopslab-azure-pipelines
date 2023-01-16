@@ -9,12 +9,12 @@ locals {
   srv_endpoint_github_pr = "io-azure-devops-github-pr"
 
   # 🔐 KV AZDO
-  dev_key_vault_azdo_name  = "${local.prefix}-d-azdo-weu-kv"
-
-  dev_key_vault_resource_group  = "${local.prefix}-d-sec-rg"
+  dev_key_vault_azdo_name  = "dvopla-d-neu-kv"
+  dev_key_vault_resource_group  = "dvopla-d-sec-rg"
 
   # 🔐 KV Domain
-  dev_diego_key_vault_resource_group  = "${local.prefix}-d-diego-sec-rg"
+  dev_diego_key_vault_resource_group  = "dvopla-d-diego-sec-rg"
+  dev_diego_key_vault_name = "dvopla-d-diego-kv"
 
 }
 

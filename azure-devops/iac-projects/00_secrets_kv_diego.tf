@@ -13,8 +13,8 @@ module "diego_dev_secrets" {
   key_vault_name = local.dev_diego_key_vault_name
 
   secrets = [
-    "pagopa-d-weu-dev-aks-azure-devops-sa-token",
-    "pagopa-d-weu-dev-aks-azure-devops-sa-cacrt",
-    "pagopa-d-weu-dev-aks-apiserver-url"
+    # "pagopa-d-weu-dev-aks-azure-devops-sa-token",
+    # "pagopa-d-weu-dev-aks-azure-devops-sa-cacrt",
+    # "pagopa-d-weu-dev-aks-apiserver-url"
   ]
 }

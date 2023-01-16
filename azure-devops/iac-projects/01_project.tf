@@ -1,13 +1,9 @@
-resource "azuredevops_project" "project" {
-  name               = local.project_name
-  description        = "This is the DevOps project for pagoPA service projects"
-  visibility         = "private"
-  version_control    = "Git"
-  work_item_template = "Basic"
+data "azuredevops_project" "project" {
+  name = local.project_name
 }
 
 resource "azuredevops_project_features" "project_features" {
-  project_id = azuredevops_project.project.id
+  project_id = data.azuredevops_project.project.id
   features = {
     "boards"       = "disabled"
     "repositories" = "disabled"
