@@ -102,7 +102,7 @@ module "devops-webapp-python_docker_build" {
   github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-pr.id
   pipeline_name                = var.devops-webapp-python.repository.pipeline_name
   pipeline_yml_filename        = var.devops-webapp-python.repository.pipeline_yml_filename
-  path = var.devops-webapp-python.repository.name
+  path                         = var.devops-webapp-python.repository.name
 
   ci_trigger_use_yaml = true
 
