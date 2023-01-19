@@ -30,7 +30,7 @@ if [ -z "$PROJECT" ]; then
   exit 0
 fi
 
-pushd "${PROJECT}-projects"
+pushd "${PROJECT}"
 
 # LOAD SUBSCRIPTION
 ## must be subscription in lower case
