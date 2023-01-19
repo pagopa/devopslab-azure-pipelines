@@ -30,16 +30,16 @@ resource "azuredevops_serviceendpoint_github" "azure-devops-github-pr" {
   }
 }
 
-# # Github service connection (read-write)
-# resource "azuredevops_serviceendpoint_github" "azure-devops-github-rw" {
-#   depends_on = [data.azuredevops_project.project]
+# Github service connection (read-write)
+resource "azuredevops_serviceendpoint_github" "azure-devops-github-rw" {
+  depends_on = [data.azuredevops_project.project]
 
-#   project_id            = data.azuredevops_project.project.id
-#   service_endpoint_name = local.srv_endpoint_github_rw
-#   auth_personal {
-#     personal_access_token = module.secrets.values["azure-devops-github-rw-TOKEN"].value
-#   }
-#   lifecycle {
-#     ignore_changes = [description, authorization]
-#   }
-# }
+  project_id            = data.azuredevops_project.project.id
+  service_endpoint_name = local.srv_endpoint_github_rw
+  auth_personal {
+    personal_access_token = module.secrets.values["azure-devops-github-rw-TOKEN"].value
+  }
+  lifecycle {
+    ignore_changes = [description, authorization]
+  }
+}
