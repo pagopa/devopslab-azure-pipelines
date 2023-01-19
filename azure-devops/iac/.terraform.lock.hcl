@@ -9,6 +9,14 @@ provider "registry.terraform.io/hashicorp/azurerm" {
   ]
 }
 
+provider "registry.terraform.io/hashicorp/time" {
+  version     = "0.9.1"
+  constraints = ">= 0.7.0"
+  hashes = [
+    "h1:UHcDnIYFZ00uoou0TwPGMwOrE8gTkoRephIvdwDAK70=",
+  ]
+}
+
 provider "registry.terraform.io/microsoft/azuredevops" {
   version     = "0.3.0"
   constraints = ">= 0.3.0"
