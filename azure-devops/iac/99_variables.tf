@@ -32,3 +32,8 @@ variable "aks_dev_platform_name" {
   type        = string
   description = "AKS DEV platform name"
 }
+
+variable "aks_dev_platform_resource_group" {
+  type        = string
+  description = "AKS DEV platform resource group"
+}
