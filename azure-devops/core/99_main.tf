@@ -1,12 +1,12 @@
 terraform {
-  required_version = ">= 1.1.2"
+  required_version = ">= 1.3.2"
   required_providers {
     azuredevops = {
       source  = "microsoft/azuredevops"
-      version = ">= 0.1.8"
+      version = ">= 0.5.0"
     }
     azurerm = {
-      version = ">= 2.90.0"
+      version = ">= 2.99.0"
     }
   }
   backend "azurerm" {}
