@@ -3,7 +3,7 @@ variable "devops-webapp-python" {
     repository = {
       organization          = "pagopa"
       name                  = "devops-webapp-python"
-      branch_name           = "main"
+      branch_name           = "refs/heads/main"
       pipelines_path        = ".devops"
       pipeline_yml_filename = "docker-build.yml"
       pipeline_name         = "devops-webapp-python.docker-build"

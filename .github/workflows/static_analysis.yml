@@ -15,7 +15,7 @@ jobs:
       - name: init_terraform_folders
         env:
           FOLDERS: >
-            azure-devops/app
+            azure-devops/core
             azure-devops/iac
         run: |
           pids=()
