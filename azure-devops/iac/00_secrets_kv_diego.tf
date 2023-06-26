@@ -3,7 +3,7 @@
 #
 
 module "diego_dev_secrets" {
-  source = "git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query?ref=v2.18.9"
+  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query?ref=v6.15.2"
 
   providers = {
     azurerm = azurerm.dev
