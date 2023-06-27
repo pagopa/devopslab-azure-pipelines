@@ -19,9 +19,10 @@ variable "diego_iac" {
 locals {
   # global vars
   diego_iac_variables = {
-    tf_aks_dev_name                 = var.aks_dev_platform_name
-    tf_aks_dev_resource_group       = var.aks_dev_platform_resource_group
-    tf_dev_azure_service_connection = azuredevops_serviceendpoint_azurerm.DEV-SERVICE-CONN.service_endpoint_name
+    tf_dev01_aks_apiserver_url         = module.diego_dev_secrets.values["dvopla-d-neu-dev01-aks-apiserver-url"].value,
+    tf_dev01_aks_azure_devops_sa_cacrt = module.diego_dev_secrets.values["dvopla-d-neu-dev01-aks-azure-devops-sa-cacrt"].value,
+    tf_dev01_aks_azure_devops_sa_token = base64decode(module.diego_dev_secrets.values["dvopla-d-neu-dev01-aks-azure-devops-sa-token"].value),
+    tf_aks_dev_name                    = var.aks_dev_platform_name
   }
   # global secrets
   diego_iac_variables_secret = {}
@@ -62,7 +63,7 @@ module "diego_iac_code_review" {
 
   service_connection_ids_authorization = [
     azuredevops_serviceendpoint_github.azure-devops-github-ro.id,
-    azuredevops_serviceendpoint_azurerm.DEV-SERVICE-CONN.id,
+    module.DEV-PLAN-SERVICE-CONN.service_endpoint_id,
   ]
 }
 
