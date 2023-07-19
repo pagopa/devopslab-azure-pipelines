@@ -46,7 +46,7 @@ locals {
 # change only providers
 #tfsec:ignore:GEN003
 module "tlscert-helm-template-ingress-devopslab-pagopa-it-cert_az" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert?ref=v2.0.4"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert?ref=v2.7.0"
   count  = var.tlscert-helm-template-ingress-devopslab-pagopa-it.pipeline.enable_tls_cert == true ? 1 : 0
 
   # change me
@@ -59,7 +59,7 @@ module "tlscert-helm-template-ingress-devopslab-pagopa-it-cert_az" {
   name                         = "${var.tlscert-helm-template-ingress-devopslab-pagopa-it.pipeline.dns_record_name}.${var.tlscert-helm-template-ingress-devopslab-pagopa-it.pipeline.dns_zone_name}"
   renew_token                  = local.tlscert_renew_token
   path                         = var.tlscert-helm-template-ingress-devopslab-pagopa-it.pipeline.path
-  github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-ro.id
+  github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-rw.id
 
   dns_record_name         = var.tlscert-helm-template-ingress-devopslab-pagopa-it.pipeline.dns_record_name
   dns_zone_name           = var.tlscert-helm-template-ingress-devopslab-pagopa-it.pipeline.dns_zone_name
