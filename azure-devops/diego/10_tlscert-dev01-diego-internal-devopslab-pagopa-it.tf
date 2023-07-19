@@ -8,7 +8,7 @@ variable "tlscert-dev01-diego-internal-devopslab-pagopa-it" {
     }
     pipeline = {
       enable_tls_cert = true
-      path            = "TLS-Certificates\\LAB"
+      path            = "TLS-Certificates"
       dns_record_name = "dev01.diego.internal"
       dns_zone_name   = "devopslab.pagopa.it"
       # common variables to all pipelines
@@ -24,42 +24,44 @@ variable "tlscert-dev01-diego-internal-devopslab-pagopa-it" {
 
 locals {
   tlscert-dev01-diego-internal-devopslab-pagopa-it = {
-    tenant_id                           = module.secrets.values["TENANTID"].value
-    subscription_name                   = var.subscription_name
-    subscription_id                     = module.secrets.values["LAB-SUBSCRIPTION-ID"].value
-    dns_zone_resource_group             = local.vnet_resource_group_name
-    credential_subcription              = var.subscription_name
-    credential_key_vault_name           = "dvopla-d-diego-kv"
-    credential_key_vault_resource_group = "dvopla-d-diego-sec-rg"
+    tenant_id                           = module.secret_core.values["TENANTID"].value
+    subscription_name                   = local.dev_subscription_name
+    subscription_id                     = module.secret_core.values["DEV-SUBSCRIPTION-ID"].value
+    dns_zone_resource_group             = local.rg_dev_dns_zone_name
+    credential_subcription              = local.dev_subscription_name
+    credential_key_vault_name           = local.dev_domain_key_vault_name
+    credential_key_vault_resource_group = local.dev_domain_key_vault_resource_group
     service_connection_ids_authorization = [
-      module.LAB-TLS-CERT-SERVICE-CONN.service_endpoint_id,
+      module.DEVOPSLAB-TLS-CERT-SERVICE-CONN.service_endpoint_id,
     ]
   }
   tlscert-dev01-diego-internal-devopslab-pagopa-it-variables = {
-    KEY_VAULT_SERVICE_CONNECTION = module.LAB-TLS-CERT-SERVICE-CONN.service_endpoint_name,
-    KEY_VAULT_NAME               = "dvopla-d-diego-kv"
+    KEY_VAULT_SERVICE_CONNECTION = module.DEVOPSLAB-TLS-CERT-SERVICE-CONN.service_endpoint_name,
+    KEY_VAULT_NAME               = local.dev_domain_key_vault_name
   }
   tlscert-dev01-diego-internal-devopslab-pagopa-it-variables_secret = {
   }
 }
 
 # change only providers
-#tfsec:ignore:GEN003
+#tfsec:ignore:general-secrets-no-plaintext-exposure
 module "tlscert-dev01-diego-internal-devopslab-pagopa-it-cert_az" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert?ref=v2.7.0"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert?ref=v2.6.5"
   count  = var.tlscert-dev01-diego-internal-devopslab-pagopa-it.pipeline.enable_tls_cert == true ? 1 : 0
 
   # change me
   providers = {
-    azurerm = azurerm.lab
+    azurerm = azurerm.dev
   }
 
-  project_id                   = azuredevops_project.project.id
-  repository                   = var.tlscert-dev01-diego-internal-devopslab-pagopa-it.repository
-  name                         = "${var.tlscert-dev01-diego-internal-devopslab-pagopa-it.pipeline.dns_record_name}.${var.tlscert-dev01-diego-internal-devopslab-pagopa-it.pipeline.dns_zone_name}"
+  project_id = data.azuredevops_project.project.id
+  repository = var.tlscert-dev01-diego-internal-devopslab-pagopa-it.repository
+  name       = "${var.tlscert-dev01-diego-internal-devopslab-pagopa-it.pipeline.dns_record_name}.${var.tlscert-dev01-diego-internal-devopslab-pagopa-it.pipeline.dns_zone_name}"
+  #tfsec:ignore:general-secrets-no-plaintext-exposure
+  #tfsec:ignore:GEN003
   renew_token                  = local.tlscert_renew_token
-  path                         = var.tlscert-dev01-diego-internal-devopslab-pagopa-it.pipeline.path
-  github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-rw.id
+  path                         = "${local.domain}\\${var.tlscert-dev01-diego-internal-devopslab-pagopa-it.pipeline.path}"
+  github_service_connection_id = data.azuredevops_serviceendpoint_github.io-azure-devops-github-rw.id
 
   dns_record_name         = var.tlscert-dev01-diego-internal-devopslab-pagopa-it.pipeline.dns_record_name
   dns_zone_name           = var.tlscert-dev01-diego-internal-devopslab-pagopa-it.pipeline.dns_zone_name
@@ -85,14 +87,18 @@ module "tlscert-dev01-diego-internal-devopslab-pagopa-it-cert_az" {
   service_connection_ids_authorization = local.tlscert-dev01-diego-internal-devopslab-pagopa-it.service_connection_ids_authorization
 
   schedules = {
-    days_to_build              = ["Thu"]
+    days_to_build              = ["Mon"]
     schedule_only_with_changes = false
     start_hours                = 3
     start_minutes              = 0
     time_zone                  = "(UTC+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna"
     branch_filter = {
-      include = ["master"]
+      include = [var.tlscert-dev01-diego-internal-devopslab-pagopa-it.repository.branch_name]
       exclude = []
     }
   }
+
+  depends_on = [
+    module.letsencrypt_dev
+  ]
 }

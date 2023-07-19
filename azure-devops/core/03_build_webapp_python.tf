@@ -71,7 +71,7 @@ module "devops-webapp-python_code_review" {
   project_id                   = azuredevops_project.project.id
   repository                   = var.devops-webapp-python.repository
   github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-pr.id
-  path = var.devops-webapp-python.repository.name
+  path                         = var.devops-webapp-python.repository.name
 
   pull_request_trigger_use_yaml = true
 
