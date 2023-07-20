@@ -18,7 +18,7 @@ variable "devops-java-springboot-color" {
 locals {
   # global vars
   devops-java-springboot-color-variables = {
-    dockerfile = "Dockerfile"
+    dockerfile     = "Dockerfile"
     DEV_AGENT_POOL = local.azdo_agent_pool_dev
 
   }
@@ -44,7 +44,7 @@ locals {
     SETTINGS_XML_RW_SECURE_FILE_NAME = "settings-rw.xml"
     SETTINGS_XML_RO_SECURE_FILE_NAME = "settings-ro.xml"
     HELM_RELEASE_NAME                = var.devops-java-springboot-color.repository.name
-    DEV_KUBERNETES_SERVICE_CONN = local.srv_endpoint_name_aks_dev
+    DEV_KUBERNETES_SERVICE_CONN      = local.srv_endpoint_name_aks_dev
   }
   # deploy secrets
   devops-java-springboot-color-variables_secret_deploy = {
@@ -58,7 +58,7 @@ module "devops-java-springboot-color_code_review" {
 
   project_id                   = data.azuredevops_project.project.id
   repository                   = var.devops-java-springboot-color.repository
-  github_service_connection_id = local.service_endpoint_io_azure_devops_github_pr_id
+  github_service_connection_id = data.azuredevops_serviceendpoint_github.io-azure-devops-github-rw.service_endpoint_id
   path                         = var.devops-java-springboot-color.pipeline.path
 
   ci_trigger_use_yaml           = true
@@ -75,7 +75,6 @@ module "devops-java-springboot-color_code_review" {
   )
 
   service_connection_ids_authorization = [
-    local.service_endpoint_io_azure_devops_github_ro_id,
     local.azuredevops_serviceendpoint_sonarcloud_id,
   ]
 }
@@ -86,7 +85,7 @@ module "devops-java-springboot-color_deploy" {
 
   project_id                   = data.azuredevops_project.project.id
   repository                   = var.devops-java-springboot-color.repository
-  github_service_connection_id = local.service_endpoint_io_azure_devops_github_pr_id
+  github_service_connection_id = data.azuredevops_serviceendpoint_github.io-azure-devops-github-rw.service_endpoint_id
   path                         = var.devops-java-springboot-color.pipeline.path
   ci_trigger_use_yaml          = true
 
@@ -101,10 +100,7 @@ module "devops-java-springboot-color_deploy" {
   )
 
   service_connection_ids_authorization = [
-    local.service_endpoint_io_azure_devops_github_pr_id,
-
-    local.service_endpoint_azure_dev_id,
-    local.service_endpoint_azure_devops_docker_dev_id,
+    data.azuredevops_serviceendpoint_azurerm.azure_dev.id,
     azuredevops_serviceendpoint_kubernetes.aks_dev.id
   ]
 
