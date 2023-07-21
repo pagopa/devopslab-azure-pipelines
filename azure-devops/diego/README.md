@@ -46,7 +46,7 @@
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_dev_subscription_name"></a> [dev\_subscription\_name](#input\_dev\_subscription\_name) | DEV Subscription name | `string` | n/a | yes |
-| <a name="input_devops-java-springboot-color"></a> [devops-java-springboot-color](#input\_devops-java-springboot-color) | n/a | `map` | <pre>{<br>  "pipeline": {<br>    "enable_code_review": true,<br>    "enable_deploy": true,<br>    "path": "diego\\devops-java-springboot-color"<br>  },<br>  "repository": {<br>    "branch_name": "refs/heads/main",<br>    "name": "devops-java-springboot-color",<br>    "organization": "pagopa",<br>    "pipelines_path": ".devops",<br>    "yml_prefix_name": null<br>  }<br>}</pre> | no |
+| <a name="input_devops-java-springboot-color"></a> [devops-java-springboot-color](#input\_devops-java-springboot-color) | n/a | `map` | <pre>{<br>  "pipeline": {<br>    "enable_code_review": true,<br>    "enable_deploy": true,<br>    "path": "diego\\devops-java-springboot-color"<br>  },<br>  "repository": {<br>    "branch_name": "refs/heads/main",<br>    "name": "devops-java-springboot-color",<br>    "organization": "pagopa",<br>    "pipelines_path": ".devops",<br>    "yml_prefix_name": "devopslab-diego"<br>  }<br>}</pre> | no |
 | <a name="input_prefix"></a> [prefix](#input\_prefix) | n/a | `string` | `"dvopla"` | no |
 | <a name="input_project_name_prefix"></a> [project\_name\_prefix](#input\_project\_name\_prefix) | Project name prefix (e.g. userregistry) | `string` | n/a | yes |
 | <a name="input_service_endpoint_azure_dev_name"></a> [service\_endpoint\_azure\_dev\_name](#input\_service\_endpoint\_azure\_dev\_name) | azure service endpoint name for dev | `string` | n/a | yes |

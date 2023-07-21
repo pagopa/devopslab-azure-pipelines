@@ -28,7 +28,7 @@ locals {
   srv_endpoint_name_aks_dev = "${local.prefix}-${local.domain}-aks-dev"
 
   # Agent Pool
-  azdo_agent_pool_dev = "${local.prefix}-dev-linux"
+  azdo_agent_pool_dev = "${local.dev_subscription_name}-dev-linux"
 
   # Subscription Name
   dev_subscription_name = "devopslab"
