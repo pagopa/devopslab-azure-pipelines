@@ -14,8 +14,8 @@ module "domain_dev_secrets" {
   key_vault_name = local.dev_domain_key_vault_name
 
   secrets = [
-    "dvopla-d-neu-dev01-aks-apiserver-url",
-    "dvopla-d-neu-dev01-aks-azure-devops-sa-cacrt",
-    "dvopla-d-neu-dev01-aks-azure-devops-sa-token",
+    # "dvopla-d-neu-dev01-aks-apiserver-url",
+    # "dvopla-d-neu-dev01-aks-azure-devops-sa-cacrt",
+    # "dvopla-d-neu-dev01-aks-azure-devops-sa-token",
   ]
 }
