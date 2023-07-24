@@ -3,7 +3,7 @@
 #
 
 module "secret_core" {
-  source = "git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query?ref=v2.0.5"
+  source = "git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query?ref=v4.17.0"
 
   resource_group = local.core_key_vault_resource_group
   key_vault_name = local.core_key_vault_azdo_name

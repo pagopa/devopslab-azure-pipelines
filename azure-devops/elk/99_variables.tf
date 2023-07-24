@@ -1,7 +1,7 @@
 locals {
   prefix           = var.prefix
   azure_devops_org = "pagopaspa"
-  domain           = "diego"
+  domain           = "elk"
 
   # 🔐 KV AZDO
   core_key_vault_resource_group = "dvopla-d-sec-rg"
