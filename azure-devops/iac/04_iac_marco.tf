@@ -8,20 +8,19 @@ variable "marco_iac" {
       yml_prefix_name = "marco"
     }
     pipeline = {
-      path                 = "marco"
+      path            = "marco"
     }
   }
 }
 
 
 module "marco_switcher" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_switcher?ref=ac38a87"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_switcher?ref=d5d3367"
   path   = var.marco_iac.pipeline.path
 
   project_id                   = data.azuredevops_project.project.id
   repository                   = var.marco_iac.repository
   github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-rw.id
-
 
   variables = merge(
     local.diego_iac_variables,
@@ -32,6 +31,7 @@ module "marco_switcher" {
     local.diego_iac_variables_secret,
     local.diego_iac_variables_secret_deploy,
   )
+
 
 
   tenant_id                           = module.secrets.values["TENANTID"].value
