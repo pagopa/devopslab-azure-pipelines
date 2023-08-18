@@ -3,7 +3,7 @@ variable "switcher_iac" {
     repository = {
       organization    = "pagopa"
       name            = "eng-common-scripts"
-      branch_name     = "refs/heads/fix-switcher"
+      branch_name     = "refs/heads/main"
       pipelines_path  = "devops"
       yml_prefix_name = null
     }
