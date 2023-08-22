@@ -23,7 +23,7 @@ locals {
 
 
 module "resource_switcher" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_resource_switcher?ref=v3.4.0"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_resource_switcher?ref=v3.6.0"
   path   = var.switcher_iac.pipeline.path
 
   project_id                   = data.azuredevops_project.project.id
@@ -33,13 +33,13 @@ module "resource_switcher" {
   variables = local.variables
   variables_secret = {}
 
-  tenant_id                           = module.secrets.values["TENANTID"].value
-  subscription_id                     = module.secrets.values["DEV-SUBSCRIPTION-ID"].value
 
   service_connection_ids_authorization = [
     azuredevops_serviceendpoint_github.azure-devops-github-ro.id,
     azuredevops_serviceendpoint_azurerm.DEV-SERVICE-CONN.id,
   ]
+
+  timeout = 30
 
   schedule_configuration = {
     days_to_build = ["Mon", "Tue", "Wed", "Thu", "Fri"]
