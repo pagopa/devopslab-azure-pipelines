@@ -23,7 +23,7 @@ locals {
 
 
 module "resource_switcher" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_resource_switcher?ref=v3.7.0"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_resource_switcher?ref=v3.9.0"
   path   = var.switcher_iac.pipeline.path
 
   project_id                   = data.azuredevops_project.project.id
@@ -39,7 +39,7 @@ module "resource_switcher" {
     azuredevops_serviceendpoint_azurerm.DEV-SERVICE-CONN.id,
   ]
 
-  timeout = 30
+  timeout = 40
 
   schedule_configuration = {
     days_to_build = ["Mon", "Tue", "Wed", "Thu", "Fri"]
@@ -54,6 +54,7 @@ module "resource_switcher" {
         start_time = "08:00"
         stop_time = "20:00"
         rg = "dvopla-d-neu-dev01-aks-rg"
+        force = true
         user = {
           nodes_on_start = "1,3"
           nodes_on_stop = "0,0"
