@@ -1,7 +1,7 @@
 locals {
   prefix           = var.prefix
   azure_devops_org = "pagopaspa"
-  domain           = "diego"
+  domain           = "blueprint"
 
   # 🔐 KV AZDO
   core_key_vault_resource_group = "dvopla-d-sec-rg"
@@ -39,11 +39,6 @@ locals {
   # TODO azure devops terraform provider does not support SonarCloud service endpoint
   azuredevops_serviceendpoint_sonarcloud_id = "9182be64-d387-465d-9acc-e79e802910c8"
 
-
-  # # DEV
-  # service_endpoint_azure_devops_docker_dev_name = data.terraform_remote_state.core.outputs.service_endpoint_azure_devops_docker_dev_name
-  # service_endpoint_azure_devops_docker_dev_id   = data.terraform_remote_state.core.outputs.service_endpoint_azure_devops_docker_dev_id
-
 }
 
 variable "project_name_prefix" {
@@ -70,15 +65,6 @@ variable "dev_subscription_name" {
   type        = string
   description = "DEV Subscription name"
 }
-
-# variable "terraform_remote_state_core" {
-#   type = object({
-#     resource_group_name  = string,
-#     storage_account_name = string,
-#     container_name       = string,
-#     key                  = string
-#   })
-# }
 
 variable "subscription_name" {
   type        = string
