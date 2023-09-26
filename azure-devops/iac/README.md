@@ -22,6 +22,7 @@
 | <a name="module_diego_dev_secrets"></a> [diego\_dev\_secrets](#module\_diego\_dev\_secrets) | git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query | v6.15.2 |
 | <a name="module_diego_iac_code_review"></a> [diego\_iac\_code\_review](#module\_diego\_iac\_code\_review) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review | v3.1.1 |
 | <a name="module_diego_iac_deploy"></a> [diego\_iac\_deploy](#module\_diego\_iac\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy | v3.1.1 |
+| <a name="module_resource_switcher"></a> [resource\_switcher](#module\_resource\_switcher) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_resource_switcher | v3.9.0 |
 | <a name="module_secrets"></a> [secrets](#module\_secrets) | git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query | v6.15.2 |
 
 ## Resources
@@ -45,6 +46,7 @@
 | <a name="input_dev_subscription_name"></a> [dev\_subscription\_name](#input\_dev\_subscription\_name) | DEV Subscription name | `string` | n/a | yes |
 | <a name="input_diego_iac"></a> [diego\_iac](#input\_diego\_iac) | n/a | `map` | <pre>{<br>  "pipeline": {<br>    "enable_code_review": true,<br>    "enable_deploy": true,<br>    "path": "diego-domain",<br>    "pipeline_name_prefix": "diego-domain"<br>  },<br>  "repository": {<br>    "branch_name": "refs/heads/main",<br>    "name": "devopslab-infra",<br>    "organization": "pagopa",<br>    "pipelines_path": ".devops",<br>    "yml_prefix_name": "diego"<br>  }<br>}</pre> | no |
 | <a name="input_project_name_prefix"></a> [project\_name\_prefix](#input\_project\_name\_prefix) | Project name prefix (e.g. userregistry) | `string` | n/a | yes |
+| <a name="input_switcher_iac"></a> [switcher\_iac](#input\_switcher\_iac) | n/a | `map` | <pre>{<br>  "pipeline": {<br>    "path": "switcher"<br>  },<br>  "repository": {<br>    "branch_name": "refs/heads/main",<br>    "name": "eng-common-scripts",<br>    "organization": "pagopa",<br>    "pipelines_path": "devops",<br>    "yml_prefix_name": null<br>  }<br>}</pre> | no |
 
 ## Outputs
 
