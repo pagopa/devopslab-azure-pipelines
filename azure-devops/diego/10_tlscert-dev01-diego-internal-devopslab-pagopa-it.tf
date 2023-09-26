@@ -87,7 +87,7 @@ module "tlscert-dev01-diego-internal-devopslab-pagopa-it-cert_az" {
   service_connection_ids_authorization = local.tlscert-dev01-diego-internal-devopslab-pagopa-it.service_connection_ids_authorization
 
   schedules = {
-    days_to_build              = ["Mon"]
+    days_to_build              = ["Thu"]
     schedule_only_with_changes = false
     start_hours                = 3
     start_minutes              = 0
