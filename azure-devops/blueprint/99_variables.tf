@@ -57,6 +57,11 @@ variable "prefix" {
   }
 }
 
+variable "location" {
+  type    = string
+  default = ""
+}
+
 #
 # Subscription
 #

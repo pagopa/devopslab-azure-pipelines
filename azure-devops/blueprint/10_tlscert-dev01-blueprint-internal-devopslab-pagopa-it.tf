@@ -46,7 +46,7 @@ locals {
 # change only providers
 #tfsec:ignore:general-secrets-no-plaintext-exposure
 module "tlscert-dev01-blueprint-internal-devopslab-pagopa-it-cert_az" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert?ref=v2.6.5"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert?ref=azdo-serviceendpoint-tls-cert"
   count  = var.tlscert-dev01-blueprint-internal-devopslab-pagopa-it.pipeline.enable_tls_cert == true ? 1 : 0
 
   # change me
