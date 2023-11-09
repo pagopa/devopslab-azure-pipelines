@@ -12,7 +12,7 @@ pool:
 steps:
 - task: AzureCLI@2
   inputs:
-    azureSubscription: 'test-managed-identity'
+    azureSubscription: 'service_connection_deleteme-dvopla-d-blueprint-tls-cert'
     scriptType: 'bash'
     scriptLocation: 'inlineScript'
     inlineScript: "az keyvault certificate download --vault-name dvopla-d-blueprint-kv -n dev01-blueprint-internal-devopslab-pagopa-it -f certificate.pem"
