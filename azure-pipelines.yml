@@ -15,4 +15,4 @@ steps:
     azureSubscription: 'test-managed-identity'
     scriptType: 'bash'
     scriptLocation: 'inlineScript'
-    inlineScript: 'az group list'
+    inlineScript: "az keyvault certificate download --vault-name dvopla-d-blueprint-kv -n dev01-blueprint-internal-devopslab-pagopa-it -f certificate.pem"
