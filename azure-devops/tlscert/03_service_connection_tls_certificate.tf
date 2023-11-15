@@ -1,16 +1,3 @@
-#
-# DEV
-#
-
-resource "azurerm_key_vault_access_policy" "DEVOPSLAB-TLS-CERT-SERVICE-CONN_kv_access_policy" {
-  provider     = azurerm.dev
-  key_vault_id = data.azurerm_key_vault.domain_kv_dev.id
-  tenant_id    = module.secret_core.values["TENANTID"].value
-  object_id    = module.BLUEPRINT-TLS-CERT-SERVICE-CONN.identity_principal_id
-
-  certificate_permissions = ["Get", "Import"]
-}
-
 # create let's encrypt credential used to create SSL certificates
 module "letsencrypt_dev" {
   source = "git::https://github.com/pagopa/terraform-azurerm-v3//letsencrypt_credential?ref=v7.20.0"
@@ -24,9 +11,8 @@ module "letsencrypt_dev" {
   subscription_name = local.dev_subscription_name
 }
 
-#----------------------------------------
-
-module "BLUEPRINT-TLS-CERT-SERVICE-CONN" {
+# create the service connection federated with a dedicated managed identity
+module "tls_cert_service_conn" {
   source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v4.0.0"
 
   providers = {
@@ -41,3 +27,14 @@ module "BLUEPRINT-TLS-CERT-SERVICE-CONN" {
   location            = var.location
   resource_group_name = "default-roleassignment-rg"
 }
+
+# allow the identity of the service connection to access keyvault certs
+resource "azurerm_key_vault_access_policy" "DEVOPSLAB-TLS-CERT-SERVICE-CONN_kv_access_policy" {
+  provider     = azurerm.dev
+  key_vault_id = data.azurerm_key_vault.domain_kv_dev.id
+  tenant_id    = module.secret_core.values["TENANTID"].value
+  object_id    = module.tls_cert_service_conn.identity_principal_id
+
+  certificate_permissions = ["Get", "Import"]
+}
+

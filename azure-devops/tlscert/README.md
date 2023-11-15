@@ -22,10 +22,10 @@
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_BLUEPRINT-TLS-CERT-SERVICE-CONN"></a> [BLUEPRINT-TLS-CERT-SERVICE-CONN](#module\_BLUEPRINT-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.0.0 |
 | <a name="module_letsencrypt_dev"></a> [letsencrypt\_dev](#module\_letsencrypt\_dev) | git::https://github.com/pagopa/terraform-azurerm-v3//letsencrypt_credential | v7.20.0 |
 | <a name="module_secret_core"></a> [secret\_core](#module\_secret\_core) | git::https://github.com/pagopa/terraform-azurerm-v3//key_vault_secrets_query | v7.20.0 |
-| <a name="module_tlscert-dev01-blueprint-internal-devopslab-pagopa-it-cert_az"></a> [tlscert-dev01-blueprint-internal-devopslab-pagopa-it-cert\_az](#module\_tlscert-dev01-blueprint-internal-devopslab-pagopa-it-cert\_az) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert_federated | v4.1.0 |
+| <a name="module_tls_cert_service_conn"></a> [tls\_cert\_service\_conn](#module\_tls\_cert\_service\_conn) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v4.0.0 |
+| <a name="module_tlscert-dev01-blueprint-internal-devopslab-pagopa-it-cert_az"></a> [tlscert-dev01-blueprint-internal-devopslab-pagopa-it-cert\_az](#module\_tlscert-dev01-blueprint-internal-devopslab-pagopa-it-cert\_az) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert_federated | v4.1.1 |
 
 ## Resources
 

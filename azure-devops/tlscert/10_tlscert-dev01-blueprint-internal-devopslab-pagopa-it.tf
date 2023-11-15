@@ -32,11 +32,11 @@ locals {
     credential_key_vault_name           = local.dev_domain_key_vault_name
     credential_key_vault_resource_group = local.dev_domain_key_vault_resource_group
     service_connection_ids_authorization = [
-      module.BLUEPRINT-TLS-CERT-SERVICE-CONN.service_endpoint_id,
+      module.tls_cert_service_conn.service_endpoint_id,
     ]
   }
   tlscert-dev01-blueprint-internal-devopslab-pagopa-it-variables = {
-    KEY_VAULT_SERVICE_CONNECTION = module.BLUEPRINT-TLS-CERT-SERVICE-CONN.service_endpoint_name,
+    KEY_VAULT_SERVICE_CONNECTION = module.tls_cert_service_conn.service_endpoint_name,
     KEY_VAULT_NAME               = local.dev_domain_key_vault_name
   }
   tlscert-dev01-blueprint-internal-devopslab-pagopa-it-variables_secret = {
@@ -47,7 +47,7 @@ locals {
 # change only providers
 #tfsec:ignore:general-secrets-no-plaintext-exposure
 module "tlscert-dev01-blueprint-internal-devopslab-pagopa-it-cert_az" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert_federated?ref=v4.1.0"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert_federated?ref=v4.1.1"
   count  = var.tlscert-dev01-blueprint-internal-devopslab-pagopa-it.pipeline.enable_tls_cert == true ? 1 : 0
 
   # change me
