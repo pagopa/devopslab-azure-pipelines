@@ -43,10 +43,11 @@ locals {
   }
 }
 
+# TCE-164-refactor-modulo-tls-cert-con-federated-identity
 # change only providers
 #tfsec:ignore:general-secrets-no-plaintext-exposure
 module "tlscert-dev01-blueprint-internal-devopslab-pagopa-it-cert_az" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert?ref=azdo-serviceendpoint-tls-cert"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert_federated?ref=v4.1.0"
   count  = var.tlscert-dev01-blueprint-internal-devopslab-pagopa-it.pipeline.enable_tls_cert == true ? 1 : 0
 
   # change me
@@ -55,11 +56,11 @@ module "tlscert-dev01-blueprint-internal-devopslab-pagopa-it-cert_az" {
   }
 
   project_id = data.azuredevops_project.project.id
+  location   = var.location
   repository = var.tlscert-dev01-blueprint-internal-devopslab-pagopa-it.repository
   name       = "${var.tlscert-dev01-blueprint-internal-devopslab-pagopa-it.pipeline.dns_record_name}.${var.tlscert-dev01-blueprint-internal-devopslab-pagopa-it.pipeline.dns_zone_name}"
   #tfsec:ignore:general-secrets-no-plaintext-exposure
   #tfsec:ignore:GEN003
-  renew_token                  = local.tlscert_renew_token
   path                         = "${local.domain}\\${var.tlscert-dev01-blueprint-internal-devopslab-pagopa-it.pipeline.path}"
   github_service_connection_id = data.azuredevops_serviceendpoint_github.io-azure-devops-github-rw.id
 
@@ -70,7 +71,6 @@ module "tlscert-dev01-blueprint-internal-devopslab-pagopa-it-cert_az" {
   subscription_name       = local.tlscert-dev01-blueprint-internal-devopslab-pagopa-it.subscription_name
   subscription_id         = local.tlscert-dev01-blueprint-internal-devopslab-pagopa-it.subscription_id
 
-  credential_subcription              = local.tlscert-dev01-blueprint-internal-devopslab-pagopa-it.credential_subcription
   credential_key_vault_name           = local.tlscert-dev01-blueprint-internal-devopslab-pagopa-it.credential_key_vault_name
   credential_key_vault_resource_group = local.tlscert-dev01-blueprint-internal-devopslab-pagopa-it.credential_key_vault_resource_group
 

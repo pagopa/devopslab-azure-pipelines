@@ -6,7 +6,7 @@ resource "azurerm_key_vault_access_policy" "DEVOPSLAB-TLS-CERT-SERVICE-CONN_kv_a
   provider     = azurerm.dev
   key_vault_id = data.azurerm_key_vault.domain_kv_dev.id
   tenant_id    = module.secret_core.values["TENANTID"].value
-  object_id    = module.BLUEPRINT-TLS-CERT-SERVICE-CONN.service_principal_object_id
+  object_id    = module.BLUEPRINT-TLS-CERT-SERVICE-CONN.identity_principal_id
 
   certificate_permissions = ["Get", "Import"]
 }
@@ -27,7 +27,7 @@ module "letsencrypt_dev" {
 #----------------------------------------
 
 module "BLUEPRINT-TLS-CERT-SERVICE-CONN" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=azdo-serviceendpoint-tls-cert"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v4.0.0"
 
   providers = {
     azurerm = azurerm.dev
