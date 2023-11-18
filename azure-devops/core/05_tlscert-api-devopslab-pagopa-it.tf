@@ -8,7 +8,7 @@ variable "tlscert-api-devopslab-pagopa-it" {
     }
     pipeline = {
       enable_tls_cert = true
-      path            = "TLS-Certificates\\LAB"
+      path            = "core\\TLS-Certificates\\DEV"
       dns_record_name = "api"
       dns_zone_name   = "devopslab.pagopa.it"
       # common variables to all pipelines
