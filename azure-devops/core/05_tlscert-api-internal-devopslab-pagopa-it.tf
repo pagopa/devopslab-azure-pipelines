@@ -8,7 +8,7 @@ variable "tlscert-api-internal-devopslab-pagopa-it" {
     }
     pipeline = {
       enable_tls_cert = true
-      path            = "TLS-Certificates\\LAB"
+      path            = "core\\TLS-Certificates\\DEV"
       dns_record_name = "api.internal"
       dns_zone_name   = "devopslab.pagopa.it"
       # common variables to all pipelines
@@ -85,7 +85,7 @@ module "tlscert-api-internal-devopslab-pagopa-it-cert_az" {
   service_connection_ids_authorization = local.tlscert-api-internal-devopslab-pagopa-it.service_connection_ids_authorization
 
   schedules = {
-    days_to_build              = ["Mon"]
+    days_to_build              = ["Fri"]
     schedule_only_with_changes = false
     start_hours                = 3
     start_minutes              = 0
