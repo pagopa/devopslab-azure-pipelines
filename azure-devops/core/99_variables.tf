@@ -21,7 +21,7 @@ locals {
 
   #tfsec:ignore:GEN003
   #tfsec:ignore:GEN002
-  tlscert_renew_token = "v1"
+  tlscert_renew_token = "v2"
 }
 
 # general
