@@ -13,7 +13,7 @@ module "letsencrypt_dev" {
 
 # create the service connection federated with a dedicated managed identity
 module "tls_cert_service_conn" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v4.0.0"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v4.1.3"
 
   providers = {
     azurerm = azurerm.dev

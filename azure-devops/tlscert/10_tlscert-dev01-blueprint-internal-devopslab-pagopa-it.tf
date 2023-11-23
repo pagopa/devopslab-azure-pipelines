@@ -47,7 +47,7 @@ locals {
 # change only providers
 #tfsec:ignore:general-secrets-no-plaintext-exposure
 module "tlscert-dev01-blueprint-internal-devopslab-pagopa-it-cert_az" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert_federated?ref=v4.1.1"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert_federated?ref=v4.1.3"
   count  = var.tlscert-dev01-blueprint-internal-devopslab-pagopa-it.pipeline.enable_tls_cert == true ? 1 : 0
 
   # change me
@@ -58,7 +58,6 @@ module "tlscert-dev01-blueprint-internal-devopslab-pagopa-it-cert_az" {
   project_id = data.azuredevops_project.project.id
   location   = var.location
   repository = var.tlscert-dev01-blueprint-internal-devopslab-pagopa-it.repository
-  name       = "${var.tlscert-dev01-blueprint-internal-devopslab-pagopa-it.pipeline.dns_record_name}.${var.tlscert-dev01-blueprint-internal-devopslab-pagopa-it.pipeline.dns_zone_name}"
   #tfsec:ignore:general-secrets-no-plaintext-exposure
   #tfsec:ignore:GEN003
   path                         = "${local.domain}\\${var.tlscert-dev01-blueprint-internal-devopslab-pagopa-it.pipeline.path}"
