@@ -24,11 +24,11 @@ variable "tlscert-dev01-blueprint-internal-devopslab-pagopa-it" {
 
 locals {
   tlscert-dev01-blueprint-internal-devopslab-pagopa-it = {
-    tenant_id                           = module.secret_core.values["TENANTID"].value
-    subscription_name                   = local.dev_subscription_name
-    subscription_id                     = module.secret_core.values["DEV-SUBSCRIPTION-ID"].value
+    tenant_id                           = local.tenant_id
+    subscription_name                   = var.dev_subscription_name
+    subscription_id                     = local.dev_subscription_id
     dns_zone_resource_group             = local.rg_dev_dns_zone_name
-    credential_subcription              = local.dev_subscription_name
+    credential_subcription              = var.dev_subscription_name
     credential_key_vault_name           = local.dev_domain_key_vault_name
     credential_key_vault_resource_group = local.dev_domain_key_vault_resource_group
     service_connection_ids_authorization = [
@@ -47,7 +47,7 @@ locals {
 # change only providers
 #tfsec:ignore:general-secrets-no-plaintext-exposure
 module "tlscert-dev01-blueprint-internal-devopslab-pagopa-it-cert_az" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert_federated?ref=v4.1.3"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert_federated?ref=v4.1.4"
   count  = var.tlscert-dev01-blueprint-internal-devopslab-pagopa-it.pipeline.enable_tls_cert == true ? 1 : 0
 
   # change me

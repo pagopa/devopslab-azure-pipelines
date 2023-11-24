@@ -1,7 +1,9 @@
 locals {
-  prefix           = var.prefix
-  azure_devops_org = "pagopaspa"
-  domain           = "blueprint"
+  prefix              = var.prefix
+  azure_devops_org    = "pagopaspa"
+  domain              = "blueprint"
+  dev_subscription_id = data.azurerm_subscriptions.dev.subscriptions[0].subscription_id
+  tenant_id           = data.azurerm_client_config.current.tenant_id
 
   # 🔐 KV AZDO
   core_key_vault_resource_group = "dvopla-d-sec-rg"
@@ -28,13 +30,7 @@ locals {
   srv_endpoint_name_aks_dev = "${local.prefix}-${local.domain}-aks-dev"
 
   # Agent Pool
-  azdo_agent_pool_dev = "${local.dev_subscription_name}-dev-linux"
-
-  # Subscription Name
-  dev_subscription_name = "devopslab"
-
-  #tfsec:ignore:GEN002
-  tlscert_renew_token = "v2"
+  azdo_agent_pool_dev = "${var.dev_subscription_name}-dev-linux"
 
   # TODO azure devops terraform provider does not support SonarCloud service endpoint
   azuredevops_serviceendpoint_sonarcloud_id = "9182be64-d387-465d-9acc-e79e802910c8"

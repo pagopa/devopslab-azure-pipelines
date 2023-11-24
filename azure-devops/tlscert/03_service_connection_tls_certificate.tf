@@ -8,7 +8,7 @@ module "letsencrypt_dev" {
   prefix            = local.prefix
   env               = "d"
   key_vault_name    = local.dev_domain_key_vault_name
-  subscription_name = local.dev_subscription_name
+  subscription_name = var.dev_subscription_name
 }
 
 # create the service connection federated with a dedicated managed identity
@@ -21,18 +21,18 @@ module "tls_cert_service_conn" {
 
   project_id          = data.azuredevops_project.project.id
   name                = "${local.prefix}-d-${local.domain}-tls-cert"
-  tenant_id           = module.secret_core.values["TENANTID"].value
-  subscription_name   = local.dev_subscription_name
-  subscription_id     = module.secret_core.values["DEV-SUBSCRIPTION-ID"].value
+  tenant_id           = local.tenant_id
+  subscription_name   = var.dev_subscription_name
+  subscription_id     = local.dev_subscription_id
   location            = var.location
-  resource_group_name = "default-roleassignment-rg"
+  resource_group_name = local.dev_domain_key_vault_resource_group
 }
 
 # allow the identity of the service connection to access keyvault certs
 resource "azurerm_key_vault_access_policy" "DEVOPSLAB-TLS-CERT-SERVICE-CONN_kv_access_policy" {
   provider     = azurerm.dev
   key_vault_id = data.azurerm_key_vault.domain_kv_dev.id
-  tenant_id    = module.secret_core.values["TENANTID"].value
+  tenant_id    = local.tenant_id
   object_id    = module.tls_cert_service_conn.identity_principal_id
 
   certificate_permissions = ["Get", "Import"]

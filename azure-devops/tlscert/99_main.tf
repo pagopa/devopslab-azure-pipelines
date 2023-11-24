@@ -32,6 +32,12 @@ provider "azurerm" {
   }
 }
 
+data "azurerm_client_config" "current" {}
+
+data "azurerm_subscriptions" "dev" {
+  display_name_prefix = var.dev_subscription_name
+}
+
 provider "azurerm" {
   alias = "dev"
   features {
@@ -39,5 +45,5 @@ provider "azurerm" {
       purge_soft_delete_on_destroy = false
     }
   }
-  subscription_id = module.secret_core.values["DEV-SUBSCRIPTION-ID"].value
+  subscription_id = data.azurerm_subscriptions.dev.subscriptions[0].subscription_id
 }
