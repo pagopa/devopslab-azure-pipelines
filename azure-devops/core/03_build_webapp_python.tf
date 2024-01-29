@@ -65,7 +65,7 @@ locals {
 # CODE REVIEW
 #
 module "devops-webapp-python_code_review" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v2.7.0"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_code_review?ref=v5.4.0"
   count  = var.devops-webapp-python.pipeline.enable_code_review == true ? 1 : 0
 
   project_id                   = azuredevops_project.project.id
@@ -95,7 +95,7 @@ module "devops-webapp-python_code_review" {
 # DOCKER BUILD
 #
 module "devops-webapp-python_docker_build" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic?ref=v2.6.5"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic?ref=v5.4.0"
   count  = var.devops-webapp-python.pipeline.enable_docker_build == true ? 1 : 0
 
   project_id                   = azuredevops_project.project.id
@@ -128,7 +128,7 @@ module "devops-webapp-python_docker_build" {
 # # DEPLOY
 # #
 # module "devops-webapp-python_deploy" {
-#   source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v2.7.0"
+#   source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_deploy?ref=v5.4.0"
 #   count  = var.devops-webapp-python.pipeline.enable_deploy == true ? 1 : 0
 
 #   project_id                   = azuredevops_project.project.id

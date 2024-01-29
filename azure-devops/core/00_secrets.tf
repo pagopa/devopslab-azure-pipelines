@@ -1,5 +1,5 @@
 module "secrets" {
-  source = "git::https://github.com/pagopa/azurerm.git//key_vault_secrets_query?ref=v4.17.0"
+  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query?ref=v7.48.0"
 
   resource_group = var.key_vault_rg_name
   key_vault_name = var.key_vault_name
