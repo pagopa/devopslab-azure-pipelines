@@ -24,9 +24,9 @@ variable "tlscert-api-internal-devopslab-pagopa-it" {
 
 locals {
   tlscert-api-internal-devopslab-pagopa-it = {
-    tenant_id                           = module.secrets.values["TENANTID"].value
+    tenant_id                           = data.azurerm_client_config.current.tenant_id
     subscription_name                   = var.subscription_name
-    subscription_id                     = module.secrets.values["LAB-SUBSCRIPTION-ID"].value
+    subscription_id                     = data.azurerm_subscriptions.dev.subscriptions[0].subscription_id
     dns_zone_resource_group             = local.vnet_resource_group_name
     credential_subcription              = var.subscription_name
     credential_key_vault_name           = var.key_vault_name
@@ -46,7 +46,7 @@ locals {
 # change only providers
 #tfsec:ignore:GEN003
 module "tlscert-api-internal-devopslab-pagopa-it-cert_az" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert?ref=v5.4.0"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert?ref=v6.0.0"
   count  = var.tlscert-api-internal-devopslab-pagopa-it.pipeline.enable_tls_cert == true ? 1 : 0
 
   # change me

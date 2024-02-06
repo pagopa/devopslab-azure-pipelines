@@ -95,7 +95,7 @@ module "devops-webapp-python_code_review" {
 # DOCKER BUILD
 #
 module "devops-webapp-python_docker_build" {
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic?ref=v5.4.0"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic?ref=v6.0.0"
   count  = var.devops-webapp-python.pipeline.enable_docker_build == true ? 1 : 0
 
   project_id                   = azuredevops_project.project.id
