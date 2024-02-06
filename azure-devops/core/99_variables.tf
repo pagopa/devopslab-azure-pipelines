@@ -2,6 +2,8 @@ locals {
 
   azure_devops_org = "pagopaspa"
   project          = "${var.prefix}-${var.env_short}"
+  domain           = "core"
+  prefix           = var.prefix
 
   env_location_short = "${var.env}-${var.location_short}"
 
@@ -24,6 +26,10 @@ locals {
   tlscert_renew_token = "v2"
 
   dev_subscription_name = "devopslab"
+  dev_identity_rg_name  = "${var.prefix}-d-identity-rg"
+
+  dev_key_vault_name           = var.key_vault_name
+  dev_key_vault_resource_group = var.key_vault_rg_name
 }
 
 # general
