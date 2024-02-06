@@ -10,14 +10,5 @@ module "secrets" {
     "azure-devops-github-pr-TOKEN",
     "aks-azure-devops-sa-token",
     "aks-azure-devops-sa-cacrt",
-    # "azure-devops-github-EMAIL",
-    # "azure-devops-github-USERNAME",
-    # "DOCKER-REGISTRY-PAGOPA-USER",
-    # "DOCKER-REGISTRY-PAGOPA-TOKEN-RO",
-    "TENANTID",
-    "LAB-SUBSCRIPTION-ID",
-    "DEV-SUBSCRIPTION-ID",
-    # "UAT-SUBSCRIPTION-ID",
-    # "PROD-SUBSCRIPTION-ID",
   ]
 }

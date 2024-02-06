@@ -9,13 +9,13 @@ variable "tlscert-argocd-internal-devopslab-pagopa-it" {
     pipeline = {
       enable_tls_cert         = true
       path                    = "TLS-Certificates\\DEV"
-      dns_record_name         = "argocd-internal"
+      dns_record_name         = "argocd.internal"
       dns_zone_name           = "devopslab.pagopa.it"
       dns_zone_resource_group = "dvopla-d-vnet-rg"
       # common variables to all pipelines
       variables = {
-        CERT_NAME_EXPIRE_SECONDS = "2592000" #30 days
-        KEY_VAULT_NAME           = "dvopla-d-diego-kv"
+        CERT_NAME_EXPIRE_SECONDS = "15552000" #6 months
+        KEY_VAULT_NAME           = "dvopla-d-neu-kv"
       }
       # common secret variables to all pipelines
       variables_secret = {
