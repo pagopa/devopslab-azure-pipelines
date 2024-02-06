@@ -7,7 +7,7 @@ module "DEV-AZURERM-SERVICE-CONN" {
 
   project_id = azuredevops_project.project.id
   #tfsec:ignore:general-secrets-no-plaintext-exposure
-  name = "devopslab-azdo-app"
+  name = var.service_endpoint_azure_dev_name_prefix
 
   tenant_id         = data.azurerm_client_config.current.tenant_id
   subscription_id   = data.azurerm_subscriptions.dev.subscriptions[0].subscription_id
