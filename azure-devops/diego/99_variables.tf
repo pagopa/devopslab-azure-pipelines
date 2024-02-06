@@ -89,3 +89,8 @@ variable "service_endpoint_azure_dev_name" {
   type        = string
   description = "azure service endpoint name for dev"
 }
+
+variable "service_endpoint_azure_dev_name_prefix" {
+  type = string
+  description = "service connection prefix, used by apps for azurerm connection"
+}
