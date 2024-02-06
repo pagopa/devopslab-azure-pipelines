@@ -1,4 +1,4 @@
-variable "tlscert-dev-api-dev-platform-pagopa-it" {
+variable "tlscert-argocd-internal-devopslab-pagopa-it" {
   default = {
     repository = {
       organization   = "pagopa"
@@ -9,12 +9,12 @@ variable "tlscert-dev-api-dev-platform-pagopa-it" {
     pipeline = {
       enable_tls_cert         = true
       path                    = "TLS-Certificates\\DEV"
-      dns_record_name         = "api"
+      dns_record_name         = "argocd.internal"
       dns_zone_name           = "devopslab.pagopa.it"
       dns_zone_resource_group = "dvopla-d-vnet-rg"
       # common variables to all pipelines
       variables = {
-        CERT_NAME_EXPIRE_SECONDS = "2592000" #30 days
+        CERT_NAME_EXPIRE_SECONDS = "15552000" #6 months
         KEY_VAULT_NAME           = "dvopla-d-neu-kv"
       }
       # common secret variables to all pipelines
@@ -25,39 +25,39 @@ variable "tlscert-dev-api-dev-platform-pagopa-it" {
 }
 
 locals {
-  tlscert-dev-api-dev-platform-pagopa-it = {
+  tlscert-argocd-internal-devopslab-pagopa-it = {
     tenant_id         = data.azurerm_client_config.current.tenant_id
     subscription_name = local.dev_subscription_name
     subscription_id   = data.azurerm_subscriptions.dev.subscriptions[0].subscription_id
   }
-  tlscert-dev-api-dev-platform-pagopa-it-variables = {
+  tlscert-argocd-internal-devopslab-pagopa-it-variables = {
     KEY_VAULT_SERVICE_CONNECTION = module.DEV-TLS-CERT-SERVICE-CONN.service_endpoint_name
   }
-  tlscert-dev-api-dev-platform-pagopa-it-variables_secret = {
+  tlscert-argocd-internal-devopslab-pagopa-it-variables_secret = {
   }
 }
 
-module "tlscert-dev-api-dev-platform-pagopa-it-cert_az" {
+module "tlscert-argocd-internal-devopslab-pagopa-it-cert_az" {
 
   providers = {
     azurerm = azurerm.dev
   }
 
   source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert_federated?ref=v6.0.0"
-  count  = var.tlscert-dev-api-dev-platform-pagopa-it.pipeline.enable_tls_cert == true ? 1 : 0
+  count  = var.tlscert-argocd-internal-devopslab-pagopa-it.pipeline.enable_tls_cert == true ? 1 : 0
 
   project_id = azuredevops_project.project.id
-  repository = var.tlscert-dev-api-dev-platform-pagopa-it.repository
+  repository = var.tlscert-argocd-internal-devopslab-pagopa-it.repository
   #tfsec:ignore:GEN003
-  path                         = var.tlscert-dev-api-dev-platform-pagopa-it.pipeline.path
+  path                         = var.tlscert-argocd-internal-devopslab-pagopa-it.pipeline.path
   github_service_connection_id = azuredevops_serviceendpoint_github.azure-devops-github-rw.id
 
-  dns_record_name                      = var.tlscert-dev-api-dev-platform-pagopa-it.pipeline.dns_record_name
-  dns_zone_name                        = var.tlscert-dev-api-dev-platform-pagopa-it.pipeline.dns_zone_name
-  dns_zone_resource_group              = var.tlscert-dev-api-dev-platform-pagopa-it.pipeline.dns_zone_resource_group
-  tenant_id                            = local.tlscert-dev-api-dev-platform-pagopa-it.tenant_id
-  subscription_name                    = local.tlscert-dev-api-dev-platform-pagopa-it.subscription_name
-  subscription_id                      = local.tlscert-dev-api-dev-platform-pagopa-it.subscription_id
+  dns_record_name                      = var.tlscert-argocd-internal-devopslab-pagopa-it.pipeline.dns_record_name
+  dns_zone_name                        = var.tlscert-argocd-internal-devopslab-pagopa-it.pipeline.dns_zone_name
+  dns_zone_resource_group              = var.tlscert-argocd-internal-devopslab-pagopa-it.pipeline.dns_zone_resource_group
+  tenant_id                            = local.tlscert-argocd-internal-devopslab-pagopa-it.tenant_id
+  subscription_name                    = local.tlscert-argocd-internal-devopslab-pagopa-it.subscription_name
+  subscription_id                      = local.tlscert-argocd-internal-devopslab-pagopa-it.subscription_id
   managed_identity_resource_group_name = local.dev_identity_rg_name
 
 
@@ -66,13 +66,13 @@ module "tlscert-dev-api-dev-platform-pagopa-it-cert_az" {
   credential_key_vault_resource_group = local.dev_key_vault_resource_group
 
   variables = merge(
-    var.tlscert-dev-api-dev-platform-pagopa-it.pipeline.variables,
-    local.tlscert-dev-api-dev-platform-pagopa-it-variables,
+    var.tlscert-argocd-internal-devopslab-pagopa-it.pipeline.variables,
+    local.tlscert-argocd-internal-devopslab-pagopa-it-variables,
   )
 
   variables_secret = merge(
-    var.tlscert-dev-api-dev-platform-pagopa-it.pipeline.variables_secret,
-    local.tlscert-dev-api-dev-platform-pagopa-it-variables_secret,
+    var.tlscert-argocd-internal-devopslab-pagopa-it.pipeline.variables_secret,
+    local.tlscert-argocd-internal-devopslab-pagopa-it-variables_secret,
   )
 
   service_connection_ids_authorization = [

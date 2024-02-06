@@ -1,7 +1,7 @@
-data "azurerm_key_vault" "domain_kv_dev" {
+# data "azurerm_key_vault" "domain_kv_dev" {
 
-  provider = azurerm.dev
+#   provider = azurerm.dev
 
-  resource_group_name = local.dev_domain_key_vault_resource_group
-  name                = local.dev_domain_key_vault_name
-}
+#   resource_group_name = local.dev_domain_key_vault_resource_group
+#   name                = local.dev_domain_key_vault_name
+# }

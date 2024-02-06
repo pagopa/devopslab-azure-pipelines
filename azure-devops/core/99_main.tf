@@ -3,10 +3,10 @@ terraform {
   required_providers {
     azuredevops = {
       source  = "microsoft/azuredevops"
-      version = ">= 0.5.0"
+      version = ">= 0.10.0"
     }
     azurerm = {
-      version = ">= 2.99.0"
+      version = ">= 3.85.0"
     }
   }
   backend "azurerm" {}
@@ -18,24 +18,7 @@ provider "azurerm" {
 
 provider "azurerm" {
   features {}
-  alias           = "lab"
-  subscription_id = module.secrets.values["LAB-SUBSCRIPTION-ID"].value
-}
-
-provider "azurerm" {
-  features {}
   alias           = "dev"
-  subscription_id = module.secrets.values["DEV-SUBSCRIPTION-ID"].value
+  subscription_id = data.azurerm_subscriptions.dev.subscriptions[0].subscription_id
 }
 
-provider "azurerm" {
-  features {}
-  alias           = "uat"
-  subscription_id = module.secrets.values["UAT-SUBSCRIPTION-ID"].value
-}
-
-provider "azurerm" {
-  features {}
-  alias           = "prod"
-  subscription_id = module.secrets.values["PROD-SUBSCRIPTION-ID"].value
-}
