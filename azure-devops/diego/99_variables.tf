@@ -91,6 +91,6 @@ variable "service_endpoint_azure_dev_name" {
 }
 
 variable "service_endpoint_azure_dev_name_prefix" {
-  type = string
+  type        = string
   description = "service connection prefix, used by apps for azurerm connection"
 }
