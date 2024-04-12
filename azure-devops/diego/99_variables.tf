@@ -8,8 +8,8 @@ locals {
   core_key_vault_azdo_name      = "dvopla-d-neu-kv"
 
   # 🔐 KV Domain
-  dev_domain_key_vault_resource_group = "${local.prefix}-d-${local.domain}-sec-rg"
-  dev_domain_key_vault_name           = "${local.prefix}-d-${local.domain}-kv"
+  dev_domain_key_vault_resource_group = "dvopla-d-itn-diego-sec-rg"
+  dev_domain_key_vault_name           = "dvopla-d-itn-diego-kv"
 
   # ☁️ VNET
   dev_vnet_rg = "${local.prefix}-d-vnet-rg"
@@ -91,6 +91,6 @@ variable "service_endpoint_azure_dev_name" {
 }
 
 variable "service_endpoint_azure_dev_name_prefix" {
-  type = string
+  type        = string
   description = "service connection prefix, used by apps for azurerm connection"
 }
