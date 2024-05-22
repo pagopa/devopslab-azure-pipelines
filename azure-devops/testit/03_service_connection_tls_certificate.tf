@@ -12,12 +12,12 @@ module "DEV-PRINTIT-TLS-CERT-SERVICE-CONN" {
 
   project_id        = data.azuredevops_project.project.id
   name              = "${local.prefix}-d-${local.domain}-tls-cert"
-  tenant_id         = module.secret_core.values["TENANTID"].value
+  tenant_id         = data.azurerm_client_config.current.tenant_id
   subscription_name = local.dev_subscription_name
-  subscription_id   = module.secret_core.values["DEV-SUBSCRIPTION-ID"].value
+  subscription_id   = data.azurerm_subscriptions.dev.subscriptions[0].subscription_id
 
   resource_group_name = var.identity_rg_name
-  location            = local.location
+  location            = var.location
 
 }
 
@@ -39,6 +39,6 @@ module "letsencrypt_dev" {
   }
   prefix            = local.prefix
   env               = "d"
-  key_vault_name    = local.dev_printit_key_vault_name
+  key_vault_name    = local.dev_domain_key_vault_name
   subscription_name = var.dev_subscription_name
 }

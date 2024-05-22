@@ -62,6 +62,10 @@ variable "prefix" {
   }
 }
 
+variable "location" {
+  type = string
+}
+
 variable "location_ita" {
   type = string
 }
@@ -97,4 +101,9 @@ variable "service_endpoint_azure_dev_name_prefix" {
 variable "identity_rg_name" {
   type = string
   description = "Identity rg common for all identities"
+}
+
+variable "internal_devopslab_dns_private_rg_name" {
+  type = string
+  description = "rg name for internal dns private"
 }

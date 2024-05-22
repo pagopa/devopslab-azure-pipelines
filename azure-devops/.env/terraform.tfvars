@@ -24,3 +24,5 @@ service_endpoint_azure_dev_name        = "DevOpsLab-SERVICE-CONN"
 service_endpoint_azure_dev_name_prefix = "devopslab-azdo-app"
 
 identity_rg_name = "dvopla-d-identity-rg"
+
+internal_devopslab_dns_private_rg_name = "dvopla-d-itn-vnet-rg"
