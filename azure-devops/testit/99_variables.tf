@@ -1,5 +1,5 @@
 locals {
-  prefix           = var.prefix
+  prefix = var.prefix
 
   azure_devops_org = "pagopaspa"
   domain           = "testit"
@@ -94,16 +94,16 @@ variable "service_endpoint_azure_dev_name" {
 }
 
 variable "service_endpoint_azure_dev_name_prefix" {
-  type = string
+  type        = string
   description = "service connection prefix, used by apps for azurerm connection"
 }
 
 variable "identity_rg_name" {
-  type = string
+  type        = string
   description = "Identity rg common for all identities"
 }
 
 variable "internal_devopslab_dns_private_rg_name" {
-  type = string
+  type        = string
   description = "rg name for internal dns private"
 }

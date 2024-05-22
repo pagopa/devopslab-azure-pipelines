@@ -7,10 +7,10 @@ variable "tlscert-testit-itn-internal-devopslab-pagopa-it" {
       pipelines_path = "."
     }
     pipeline = {
-      enable_tls_cert         = true
-      path                    = "TLS-Certificates\\DEV"
-      dns_record_name         = "testit.itn.internal"
-      dns_zone_name           = "devopslab.pagopa.it"
+      enable_tls_cert = true
+      path            = "TLS-Certificates\\DEV"
+      dns_record_name = "testit.itn.internal"
+      dns_zone_name   = "devopslab.pagopa.it"
       # common variables to all pipelines
       variables = {
         CERT_NAME_EXPIRE_SECONDS = "2592000" #30 days
@@ -48,13 +48,14 @@ module "tlscert-testit-itn-internal-devopslab-pagopa-it-cert_az" {
   path                         = var.tlscert-testit-itn-internal-devopslab-pagopa-it.pipeline.path
   github_service_connection_id = data.azuredevops_serviceendpoint_github.github_rw.id
 
-  dns_record_name                      = var.tlscert-testit-itn-internal-devopslab-pagopa-it.pipeline.dns_record_name
-  dns_zone_name                        = var.tlscert-testit-itn-internal-devopslab-pagopa-it.pipeline.dns_zone_name
-  dns_zone_resource_group              = var.internal_devopslab_dns_private_rg_name
-  tenant_id                            = local.tlscert-testit-itn-internal-devopslab-pagopa-it.tenant_id
-  subscription_name                    = local.tlscert-testit-itn-internal-devopslab-pagopa-it.subscription_name
-  subscription_id                      = local.tlscert-testit-itn-internal-devopslab-pagopa-it.subscription_id
-  location                             = var.location
+  dns_record_name         = var.tlscert-testit-itn-internal-devopslab-pagopa-it.pipeline.dns_record_name
+  dns_zone_name           = var.tlscert-testit-itn-internal-devopslab-pagopa-it.pipeline.dns_zone_name
+  dns_zone_resource_group = var.internal_devopslab_dns_private_rg_name
+  tenant_id               = local.tlscert-testit-itn-internal-devopslab-pagopa-it.tenant_id
+  subscription_name       = local.tlscert-testit-itn-internal-devopslab-pagopa-it.subscription_name
+  subscription_id         = local.tlscert-testit-itn-internal-devopslab-pagopa-it.subscription_id
+  location                = var.location
+
   credential_key_vault_name            = local.dev_domain_key_vault_name
   credential_key_vault_resource_group  = local.dev_domain_key_vault_resource_group
   managed_identity_resource_group_name = var.identity_rg_name
