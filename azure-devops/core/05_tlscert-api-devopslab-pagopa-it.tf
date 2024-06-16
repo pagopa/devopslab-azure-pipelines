@@ -11,11 +11,11 @@ variable "tlscert-dev-api-dev-platform-pagopa-it" {
       path                    = "TLS-Certificates\\DEV"
       dns_record_name         = "api"
       dns_zone_name           = "devopslab.pagopa.it"
-      dns_zone_resource_group = "dvopla-d-vnet-rg"
+      dns_zone_resource_group = "dvopla-d-itn-vnet-rg"
       # common variables to all pipelines
       variables = {
         CERT_NAME_EXPIRE_SECONDS = "2592000" #30 days
-        KEY_VAULT_NAME           = "dvopla-d-neu-kv"
+        KEY_VAULT_NAME           = "dvopla-d-itn-core-kv"
       }
       # common secret variables to all pipelines
       variables_secret = {
@@ -43,7 +43,7 @@ module "tlscert-dev-api-dev-platform-pagopa-it-cert_az" {
     azurerm = azurerm.dev
   }
 
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert_federated?ref=v6.0.0"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert_federated?ref=v9.0.0"
   count  = var.tlscert-dev-api-dev-platform-pagopa-it.pipeline.enable_tls_cert == true ? 1 : 0
 
   project_id = azuredevops_project.project.id
@@ -61,7 +61,7 @@ module "tlscert-dev-api-dev-platform-pagopa-it-cert_az" {
   managed_identity_resource_group_name = local.dev_identity_rg_name
 
 
-  location                            = var.location
+  location                            = var.location_northeurope
   credential_key_vault_name           = local.dev_key_vault_name
   credential_key_vault_resource_group = local.dev_key_vault_resource_group
 
