@@ -6,7 +6,7 @@ locals {
 
   # 🔐 KV AZDO
   core_key_vault_resource_group = "dvopla-d-sec-rg"
-  core_key_vault_azdo_name      = "dvopla-d-neu-kv"
+  core_key_vault_azdo_name      = "dvopla-d-itn-core-kv"
 
   # 🔐 KV Domain
   dev_domain_key_vault_resource_group = "${local.prefix}-d-${var.location_short_ita}-${local.domain}-sec-rg"

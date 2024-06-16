@@ -1,6 +1,6 @@
 module "DEV-TLS-CERT-SERVICE-CONN" {
   depends_on = [azuredevops_project.project]
-  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v6.0.0"
+  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v9.0.0"
   providers = {
     azurerm = azurerm.dev
   }
@@ -12,9 +12,18 @@ module "DEV-TLS-CERT-SERVICE-CONN" {
   subscription_id   = data.azurerm_subscriptions.dev.subscriptions[0].subscription_id
   subscription_name = local.dev_subscription_name
 
-  location            = var.location
+  location            = var.location_northeurope
   resource_group_name = local.dev_identity_rg_name
 
+}
+
+module "letsencrypt_dev_italy" {
+  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//letsencrypt_credential?ref=v8.21.0"
+
+  prefix            = "dvopla"
+  env               = "d"
+  key_vault_name    = "dvopla-d-itn-core-kv"
+  subscription_name = "devopslab"
 }
 
 data "azurerm_key_vault" "kv_dev" {

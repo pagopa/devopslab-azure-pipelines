@@ -1,6 +1,6 @@
 module "DEV-AZURERM-SERVICE-CONN" {
   depends_on = [azuredevops_project.project]
-  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v6.0.0"
+  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v9.0.0"
   providers = {
     azurerm = azurerm.dev
   }
@@ -13,7 +13,7 @@ module "DEV-AZURERM-SERVICE-CONN" {
   subscription_id   = data.azurerm_subscriptions.dev.subscriptions[0].subscription_id
   subscription_name = local.dev_subscription_name
 
-  location            = var.location
+  location            = var.location_northeurope
   resource_group_name = local.dev_identity_rg_name
 }
 
