@@ -75,6 +75,16 @@ variable "location_short" {
   default = ""
 }
 
+variable "location_northeurope" {
+  type    = string
+  default = ""
+}
+
+variable "location_short_northeurope" {
+  type    = string
+  default = ""
+}
+
 variable "lock_enable" {
   type        = bool
   default     = false

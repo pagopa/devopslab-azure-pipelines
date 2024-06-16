@@ -9,7 +9,7 @@ locals {
   srv_endpoint_github_pr = "io-azure-devops-github-pr"
 
   # 🔐 KV AZDO
-  dev_key_vault_azdo_name      = "dvopla-d-neu-kv"
+  dev_key_vault_azdo_name      = "dvopla-d-itn-core-kv"
   dev_key_vault_resource_group = "dvopla-d-sec-rg"
 
   # 🔐 KV Domain
