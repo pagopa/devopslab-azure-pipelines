@@ -14,8 +14,7 @@ variable "tlscert-management-api-internal-devopslab-pagopa-it" {
       dns_zone_resource_group = "dvopla-d-itn-vnet-rg"
       # common variables to all pipelines
       variables = {
-        CERT_NAME_EXPIRE_SECONDS = "2592000" #30 days
-        KEY_VAULT_NAME           = "dvopla-d-itn-core-kv"
+
       }
       # common secret variables to all pipelines
       variables_secret = {
