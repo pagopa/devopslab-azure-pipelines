@@ -1,10 +1,10 @@
 # general
-prefix             = "dvopla"
-env_short          = "d"
-env                = "dev"
-location           = "italynorth"
-location_short     = "itn"
-location_northeurope   = "northeurope"
+prefix                     = "dvopla"
+env_short                  = "d"
+env                        = "dev"
+location                   = "italynorth"
+location_short             = "itn"
+location_northeurope       = "northeurope"
 location_short_northeurope = "neu"
 
 subscription_name = "DevOpsLab"
