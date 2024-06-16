@@ -13,7 +13,7 @@ module "DEV-AZURERM-SERVICE-CONN" {
   subscription_id   = data.azurerm_subscriptions.dev.subscriptions[0].subscription_id
   subscription_name = local.dev_subscription_name
 
-  location            = var.location
+  location            = var.location_northeurope
   resource_group_name = local.dev_identity_rg_name
 }
 
