@@ -5,7 +5,7 @@ locals {
 
   # 🔐 KV AZDO
   core_key_vault_resource_group = "dvopla-d-sec-rg"
-  core_key_vault_azdo_name      = "dvopla-d-itn-core-kv"
+  core_key_vault_azdo_name      = "dvopla-d-neu-kv"
 
   # 🔐 KV Domain
   dev_domain_key_vault_resource_group = "dvopla-d-itn-diego-sec-rg"
@@ -39,6 +39,8 @@ locals {
   # TODO azure devops terraform provider does not support SonarCloud service endpoint
   azuredevops_serviceendpoint_sonarcloud_id = "9182be64-d387-465d-9acc-e79e802910c8"
 
+  dev_identity_rg_name = "${var.prefix}-d-identity-rg"
+
 
   # # DEV
   # service_endpoint_azure_devops_docker_dev_name = data.terraform_remote_state.core.outputs.service_endpoint_azure_devops_docker_dev_name
@@ -62,6 +64,16 @@ variable "prefix" {
   }
 }
 
+variable "location_northeurope" {
+  type    = string
+  default = ""
+}
+
+variable "location_short_northeurope" {
+  type    = string
+  default = ""
+}
+
 #
 # Subscription
 #
@@ -70,15 +82,6 @@ variable "dev_subscription_name" {
   type        = string
   description = "DEV Subscription name"
 }
-
-# variable "terraform_remote_state_core" {
-#   type = object({
-#     resource_group_name  = string,
-#     storage_account_name = string,
-#     container_name       = string,
-#     key                  = string
-#   })
-# }
 
 variable "subscription_name" {
   type        = string
