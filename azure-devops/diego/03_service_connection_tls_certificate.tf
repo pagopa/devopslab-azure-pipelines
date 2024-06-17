@@ -1,46 +1,27 @@
-#
-# DEV
-#
-module "DEVOPSLAB-TLS-CERT-SERVICE-CONN" {
-
+module "DIEGO-TLS-CERT-SERVICE-CONN" {
+  depends_on = [data.azuredevops_project.project]
+  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v9.0.0"
   providers = {
     azurerm = azurerm.dev
   }
 
-  depends_on = [data.azuredevops_project.project]
-  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_azurerm_limited?ref=v2.1.0"
-
-  project_id        = data.azuredevops_project.project.id
-  name              = "${local.prefix}-d-${local.domain}-tls-cert"
-  tenant_id         = module.secret_core.values["TENANTID"].value
+  project_id = data.azuredevops_project.project.id
+  #tfsec:ignore:general-secrets-no-plaintext-exposure
+  name              = "${local.prefix}-${local.domain}-d-azdo-tls-cert-kv-policy"
+  tenant_id         = data.azurerm_client_config.current.tenant_id
+  subscription_id   = data.azurerm_subscriptions.dev.subscriptions[0].subscription_id
   subscription_name = local.dev_subscription_name
-  subscription_id   = module.secret_core.values["DEV-SUBSCRIPTION-ID"].value
-  #tfsec:ignore:GEN003
-  renew_token = local.tlscert_renew_token
 
-  credential_subcription              = local.dev_subscription_name
-  credential_key_vault_name           = local.dev_domain_key_vault_name
-  credential_key_vault_resource_group = local.dev_domain_key_vault_resource_group
+  location            = var.location_northeurope
+  resource_group_name = local.dev_identity_rg_name
+
 }
 
-resource "azurerm_key_vault_access_policy" "DEVOPSLAB-TLS-CERT-SERVICE-CONN_kv_access_policy" {
+resource "azurerm_key_vault_access_policy" "DIEGO-TLS-CERT-SERVICE-CONN_kv_access_policy" {
   provider     = azurerm.dev
   key_vault_id = data.azurerm_key_vault.domain_kv_dev.id
   tenant_id    = module.secret_core.values["TENANTID"].value
-  object_id    = module.DEVOPSLAB-TLS-CERT-SERVICE-CONN.service_principal_object_id
+  object_id    = module.DIEGO-TLS-CERT-SERVICE-CONN.service_principal_object_id
 
   certificate_permissions = ["Get", "Import"]
-}
-
-# create let's encrypt credential used to create SSL certificates
-module "letsencrypt_dev" {
-  source = "git::https://github.com/pagopa/azurerm.git//letsencrypt_credential?ref=v2.18.0"
-
-  providers = {
-    azurerm = azurerm.dev
-  }
-  prefix            = local.prefix
-  env               = "d"
-  key_vault_name    = local.dev_domain_key_vault_name
-  subscription_name = local.dev_subscription_name
 }
