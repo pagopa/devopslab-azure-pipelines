@@ -3,22 +3,22 @@ terraform {
   required_providers {
     azuredevops = {
       source  = "microsoft/azuredevops"
-      version = ">= 0.5.0"
+      version = "<= 1.1.1"
     }
     azurerm = {
-      version = ">= 2.99.0"
+      version = "<= 3.107.0"
     }
     azuread = {
       source  = "hashicorp/azuread"
-      version = ">= 2.30.0"
+      version = "<= 2.47.0"
     }
     null = {
       source  = "hashicorp/null"
-      version = ">= 3.2.1"
+      version = "<= 3.2.1"
     }
     time = {
       source  = "hashicorp/time"
-      version = ">= 0.7.0"
+      version = "<= 0.11.0"
     }
   }
   backend "azurerm" {}
@@ -42,13 +42,3 @@ provider "azurerm" {
   subscription_id = module.secret_core.values["DEV-SUBSCRIPTION-ID"].value
 }
 
-# data "terraform_remote_state" "core" {
-#   backend = "azurerm"
-
-#   config = {
-#     resource_group_name  = var.terraform_remote_state_core.resource_group_name
-#     storage_account_name = var.terraform_remote_state_core.storage_account_name
-#     container_name       = var.terraform_remote_state_core.container_name
-#     key                  = var.terraform_remote_state_core.key
-#   }
-# }
