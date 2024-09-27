@@ -21,4 +21,6 @@ resource "azurerm_role_assignment" "dev_azurerm" {
   scope                = data.azurerm_subscriptions.dev.subscriptions[0].id
   role_definition_name = "Contributor"
   principal_id         = module.DEV-AZURERM-SERVICE-CONN.identity_principal_id
+
+  depends_on = [module.DEV-AZURERM-SERVICE-CONN]
 }
