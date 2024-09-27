@@ -1,6 +1,6 @@
 module "DEV-AZURERM-SERVICE-CONN" {
   depends_on = [azuredevops_project.project]
-  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v9.0.0"
+  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v9.2.1"
   providers = {
     azurerm = azurerm.dev
   }
