@@ -17,5 +17,8 @@ module "domain_dev_secrets" {
     "dvopla-d-itn-dev-aks-apiserver-url",
     "dvopla-d-itn-dev-aks-azure-devops-sa-cacrt",
     "dvopla-d-itn-dev-aks-azure-devops-sa-token",
+    "argocd-server",
+    "argocd-admin-password",
+    "argocd-admin-username",
   ]
 }
