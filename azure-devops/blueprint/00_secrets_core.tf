@@ -12,7 +12,5 @@ module "secret_core" {
     "azure-devops-github-ro-TOKEN",
     "azure-devops-github-rw-TOKEN",
     "azure-devops-github-pr-TOKEN",
-    "TENANTID",
-    "DEV-SUBSCRIPTION-ID",
   ]
 }
