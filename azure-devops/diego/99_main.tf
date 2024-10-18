@@ -3,10 +3,10 @@ terraform {
   required_providers {
     azuredevops = {
       source  = "microsoft/azuredevops"
-      version = "<= 1.1.1"
+      version = "<= 1.3.0"
     }
     azurerm = {
-      version = "<= 3.107.0"
+      version = "<= 3.116.0"
     }
     azuread = {
       source  = "hashicorp/azuread"
@@ -39,6 +39,11 @@ provider "azurerm" {
       purge_soft_delete_on_destroy = false
     }
   }
-  subscription_id = module.secret_core.values["DEV-SUBSCRIPTION-ID"].value
+  subscription_id = data.azurerm_subscriptions.dev.subscriptions[0].subscription_id
 }
 
+data "azurerm_client_config" "current" {}
+
+data "azurerm_subscriptions" "dev" {
+  display_name_prefix = var.dev_subscription_name
+}

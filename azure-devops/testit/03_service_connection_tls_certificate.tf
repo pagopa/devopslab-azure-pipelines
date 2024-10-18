@@ -8,7 +8,8 @@ module "DEV-PRINTIT-TLS-CERT-SERVICE-CONN" {
   }
 
   depends_on = [data.azuredevops_project.project]
-  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v7.1.0"
+  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v9.1.0"
+
 
   project_id        = data.azuredevops_project.project.id
   name              = "${local.prefix}-d-${local.domain}-tls-cert"
@@ -32,7 +33,7 @@ resource "azurerm_key_vault_access_policy" "DEV-PRINTIT-TLS-CERT-SERVICE-CONN_kv
 
 # create let's encrypt credential used to create SSL certificates
 module "letsencrypt_dev" {
-  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//letsencrypt_credential?ref=v7.1.0"
+  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//letsencrypt_credential?ref=v8.44.0"
 
   providers = {
     azurerm = azurerm.dev

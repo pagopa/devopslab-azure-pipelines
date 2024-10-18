@@ -1,6 +1,6 @@
 module "DEV-AZURERM-SERVICE-CONN" {
   depends_on = [azuredevops_project.project]
-  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v9.0.0"
+  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated?ref=v9.2.1"
   providers = {
     azurerm = azurerm.dev
   }
@@ -21,4 +21,6 @@ resource "azurerm_role_assignment" "dev_azurerm" {
   scope                = data.azurerm_subscriptions.dev.subscriptions[0].id
   role_definition_name = "Contributor"
   principal_id         = module.DEV-AZURERM-SERVICE-CONN.identity_principal_id
+
+  depends_on = [module.DEV-AZURERM-SERVICE-CONN]
 }

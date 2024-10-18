@@ -21,7 +21,7 @@ key_vault_name    = "dvopla-d-itn-core-kv"
 key_vault_rg_name = "dvopla-d-itn-sec-rg"
 
 service_endpoint_azure_dev_name        = "DevOpsLab-SERVICE-CONN"
-service_endpoint_azure_dev_name_prefix = "devopslab-azdo-app"
+service_endpoint_azure_dev_name_prefix = "devopslab-azure"
 
 identity_rg_name = "dvopla-d-identity-rg"
 
