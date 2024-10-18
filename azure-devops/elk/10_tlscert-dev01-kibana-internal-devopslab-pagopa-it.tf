@@ -24,9 +24,9 @@
 
 # locals {
 #   tlscert-dev01-kibana-internal-devopslab-pagopa-it = {
-#     tenant_id                           = module.secret_core.values["TENANTID"].value
+#     tenant_id                           = data.azurerm_client_config.current.tenant_id
 #     subscription_name                   = local.dev_subscription_name
-#     subscription_id                     = module.secret_core.values["DEV-SUBSCRIPTION-ID"].value
+#     subscription_id                     = data.azurerm_subscriptions.dev.subscriptions[0].subscription_id
 #     dns_zone_resource_group             = local.rg_dev_dns_zone_name
 #     credential_subcription              = local.dev_subscription_name
 #     credential_key_vault_name           = local.dev_domain_key_vault_name
