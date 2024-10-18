@@ -51,8 +51,9 @@ module "devopslab_diego_deploy" {
   pipeline_yml_filename = "deploy.yml"
   path                  = var.devopslab_diego_deploy.pipeline.path
 
-  ci_trigger_enabled  = false
-  ci_trigger_use_yaml = true
+  pull_request_trigger_enabled = true
+  pull_request_trigger_auto_cancel = true
+  pull_request_trigger_use_yaml = true
 
   variables = merge(
     local.devopslab_diego_deploy_variables,
