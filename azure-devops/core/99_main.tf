@@ -22,3 +22,8 @@ provider "azurerm" {
   subscription_id = data.azurerm_subscriptions.dev.subscriptions[0].subscription_id
 }
 
+data "azurerm_client_config" "current" {}
+
+data "azurerm_subscriptions" "dev" {
+  display_name_prefix = var.dev_subscription_name
+}
