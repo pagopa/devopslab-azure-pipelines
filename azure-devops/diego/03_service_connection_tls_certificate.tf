@@ -20,7 +20,7 @@ module "DIEGO-TLS-CERT-SERVICE-CONN" {
 resource "azurerm_key_vault_access_policy" "DIEGO-TLS-CERT-SERVICE-CONN_kv_access_policy" {
   provider     = azurerm.dev
   key_vault_id = data.azurerm_key_vault.domain_kv_dev.id
-  tenant_id    = module.secret_core.values["TENANTID"].value
+  tenant_id    = data.azurerm_client_config.current.tenant_id
   object_id    = module.DIEGO-TLS-CERT-SERVICE-CONN.service_principal_object_id
 
   certificate_permissions = ["Get", "Import"]
