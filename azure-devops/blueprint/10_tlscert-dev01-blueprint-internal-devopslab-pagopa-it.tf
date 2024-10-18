@@ -24,9 +24,9 @@ variable "tlscert-dev01-blueprint-internal-devopslab-pagopa-it" {
 
 locals {
   tlscert-dev01-blueprint-internal-devopslab-pagopa-it = {
-    tenant_id                           = module.secret_core.values["TENANTID"].value
+    tenant_id                           = data.azurerm_client_config.current.tenant_id
     subscription_name                   = local.dev_subscription_name
-    subscription_id                     = module.secret_core.values["DEV-SUBSCRIPTION-ID"].value
+    subscription_id                     = data.azurerm_subscriptions.dev.id
     dns_zone_resource_group             = local.rg_dev_dns_zone_name
     credential_subcription              = local.dev_subscription_name
     credential_key_vault_name           = local.dev_domain_key_vault_name
@@ -87,9 +87,9 @@ module "tlscert-dev01-blueprint-internal-devopslab-pagopa-it-cert_az" {
   service_connection_ids_authorization = local.tlscert-dev01-blueprint-internal-devopslab-pagopa-it.service_connection_ids_authorization
 
   schedules = {
-    days_to_build              = ["Thu"]
+    days_to_build              = ["Tue","Thu"]
     schedule_only_with_changes = false
-    start_hours                = 3
+    start_hours                = 13
     start_minutes              = 0
     time_zone                  = "(UTC+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna"
     branch_filter = {

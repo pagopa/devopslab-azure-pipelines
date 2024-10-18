@@ -12,9 +12,9 @@ module "DEVOPSLAB-TLS-CERT-SERVICE-CONN" {
 
   project_id        = data.azuredevops_project.project.id
   name              = "${local.prefix}-d-${local.domain}-tls-cert"
-  tenant_id         = module.secret_core.values["TENANTID"].value
+  tenant_id         = data.azurerm_client_config.current.tenant_id
   subscription_name = local.dev_subscription_name
-  subscription_id   = module.secret_core.values["DEV-SUBSCRIPTION-ID"].value
+  subscription_id   = data.azurerm_subscriptions.dev.id
   #tfsec:ignore:GEN003
   renew_token = local.tlscert_renew_token
 
@@ -26,7 +26,7 @@ module "DEVOPSLAB-TLS-CERT-SERVICE-CONN" {
 resource "azurerm_key_vault_access_policy" "DEVOPSLAB-TLS-CERT-SERVICE-CONN_kv_access_policy" {
   provider     = azurerm.dev
   key_vault_id = data.azurerm_key_vault.domain_kv_dev.id
-  tenant_id    = module.secret_core.values["TENANTID"].value
+  tenant_id    = data.azurerm_client_config.current.tenant_id
   object_id    = module.DEVOPSLAB-TLS-CERT-SERVICE-CONN.service_principal_object_id
 
   certificate_permissions = ["Get", "Import"]

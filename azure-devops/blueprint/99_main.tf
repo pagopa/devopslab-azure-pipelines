@@ -39,16 +39,11 @@ provider "azurerm" {
       purge_soft_delete_on_destroy = false
     }
   }
-  subscription_id = module.secret_core.values["DEV-SUBSCRIPTION-ID"].value
+  subscription_id = data.azurerm_subscriptions.dev.id
 }
 
-# data "terraform_remote_state" "core" {
-#   backend = "azurerm"
+data "azurerm_client_config" "current" {}
 
-#   config = {
-#     resource_group_name  = var.terraform_remote_state_core.resource_group_name
-#     storage_account_name = var.terraform_remote_state_core.storage_account_name
-#     container_name       = var.terraform_remote_state_core.container_name
-#     key                  = var.terraform_remote_state_core.key
-#   }
-# }
+data "azurerm_subscriptions" "dev" {
+  display_name_prefix = var.dev_subscription_name
+}

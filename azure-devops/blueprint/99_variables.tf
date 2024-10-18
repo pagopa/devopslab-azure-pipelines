@@ -4,7 +4,7 @@ locals {
   domain           = "blueprint"
 
   # 🔐 KV AZDO
-  core_key_vault_resource_group = "dvopla-d-sec-rg"
+  core_key_vault_resource_group = "dvopla-d-itn-sec-rg"
   core_key_vault_azdo_name      = "dvopla-d-itn-core-kv"
 
   # 🔐 KV Domain
