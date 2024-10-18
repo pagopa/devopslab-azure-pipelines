@@ -36,7 +36,7 @@ locals {
 
 module "tlscert-mock-itn-internal-devopslab-pagopa-it-cert_az" {
 
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert_federated?ref=v8.0.0"
+  source = "./.terraform/modules/__devops_v0__/azuredevops_build_definition_tls_cert_federated"
   providers = {
     azurerm = azurerm.dev
   }
@@ -73,9 +73,9 @@ module "tlscert-mock-itn-internal-devopslab-pagopa-it-cert_az" {
   ]
 
   schedules = {
-    days_to_build              = ["Fri"]
+    days_to_build              = ["Tue","Thu","Fri"]
     schedule_only_with_changes = false
-    start_hours                = 4
+    start_hours                = 14
     start_minutes              = 0
     time_zone                  = "(UTC+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna"
     branch_filter = {

@@ -5,12 +5,12 @@ locals {
   domain           = "testit"
 
   # 🔐 KV AZDO
-  core_key_vault_resource_group = "dvopla-d-sec-rg"
+  core_key_vault_resource_group = "dvopla-d-itn-sec-rg"
   core_key_vault_azdo_name      = "dvopla-d-itn-core-kv"
 
   # 🔐 KV Domain
-  dev_domain_key_vault_resource_group = "${local.prefix}-d-${var.location_short_ita}-${local.domain}-sec-rg"
-  dev_domain_key_vault_name           = "${local.prefix}-d-${var.location_short_ita}-${local.domain}-kv"
+  dev_domain_key_vault_resource_group = "${local.prefix}-d-${var.location_short}-${local.domain}-sec-rg"
+  dev_domain_key_vault_name           = "${local.prefix}-d-${var.location_short}-${local.domain}-kv"
 
   # ☁️ VNET
   dev_vnet_rg = "${local.prefix}-d-vnet-rg"
@@ -66,11 +66,7 @@ variable "location" {
   type = string
 }
 
-variable "location_ita" {
-  type = string
-}
-
-variable "location_short_ita" {
+variable "location_short" {
   type = string
 }
 

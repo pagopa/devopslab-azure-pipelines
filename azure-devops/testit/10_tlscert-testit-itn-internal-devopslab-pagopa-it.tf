@@ -36,7 +36,8 @@ locals {
 
 module "tlscert-testit-itn-internal-devopslab-pagopa-it-cert_az" {
 
-  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert_federated?ref=fix-cert-pipeline-definition"
+  source = "./.terraform/modules/__devops_v0__/azuredevops_build_definition_tls_cert_federated"
+
   count  = var.tlscert-testit-itn-internal-devopslab-pagopa-it.pipeline.enable_tls_cert == true ? 1 : 0
   providers = {
     azurerm = azurerm.dev
@@ -74,9 +75,9 @@ module "tlscert-testit-itn-internal-devopslab-pagopa-it-cert_az" {
   ]
 
   schedules = {
-    days_to_build              = ["Fri"]
+    days_to_build              = ["Tue","Thu","Fri"]
     schedule_only_with_changes = false
-    start_hours                = 3
+    start_hours                = 16
     start_minutes              = 0
     time_zone                  = "(UTC+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna"
     branch_filter = {

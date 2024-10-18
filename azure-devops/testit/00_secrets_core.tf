@@ -3,7 +3,7 @@
 #
 
 module "secret_core" {
-  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query?ref=v8.14.0"
+  source = "./.terraform/modules/__v3__/key_vault_secrets_query"
 
   resource_group = local.core_key_vault_resource_group
   key_vault_name = local.core_key_vault_azdo_name
