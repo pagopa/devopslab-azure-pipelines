@@ -6,8 +6,8 @@
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.3.5 |
 | <a name="requirement_azuread"></a> [azuread](#requirement\_azuread) | <= 2.47.0 |
-| <a name="requirement_azuredevops"></a> [azuredevops](#requirement\_azuredevops) | <= 1.1.1 |
-| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | <= 3.107.0 |
+| <a name="requirement_azuredevops"></a> [azuredevops](#requirement\_azuredevops) | <= 1.3.0 |
+| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | <= 3.116.0 |
 | <a name="requirement_null"></a> [null](#requirement\_null) | <= 3.2.1 |
 | <a name="requirement_time"></a> [time](#requirement\_time) | <= 0.11.0 |
 
@@ -15,15 +15,16 @@
 
 | Name | Version |
 |------|---------|
-| <a name="provider_azuredevops"></a> [azuredevops](#provider\_azuredevops) | 1.1.1 |
-| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 3.107.0 |
-| <a name="provider_azurerm.dev"></a> [azurerm.dev](#provider\_azurerm.dev) | 3.107.0 |
+| <a name="provider_azuredevops"></a> [azuredevops](#provider\_azuredevops) | 1.3.0 |
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 3.116.0 |
+| <a name="provider_azurerm.dev"></a> [azurerm.dev](#provider\_azurerm.dev) | 3.116.0 |
 
 ## Modules
 
 | Name | Source | Version |
 |------|--------|---------|
 | <a name="module_DIEGO-TLS-CERT-SERVICE-CONN"></a> [DIEGO-TLS-CERT-SERVICE-CONN](#module\_DIEGO-TLS-CERT-SERVICE-CONN) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_serviceendpoint_federated | v9.0.0 |
+| <a name="module_devopslab_diego_deploy"></a> [devopslab\_diego\_deploy](#module\_devopslab\_diego\_deploy) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic | v9.2.1 |
 | <a name="module_domain_dev_secrets"></a> [domain\_dev\_secrets](#module\_domain\_dev\_secrets) | git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query | v8.21.0 |
 | <a name="module_secret_core"></a> [secret\_core](#module\_secret\_core) | git::https://github.com/pagopa/terraform-azurerm-v3.git//key_vault_secrets_query | v8.21.0 |
 | <a name="module_tlscert-diego-itn-internal-devopslab-pagopa-it-cert_az"></a> [tlscert-diego-itn-internal-devopslab-pagopa-it-cert\_az](#module\_tlscert-diego-itn-internal-devopslab-pagopa-it-cert\_az) | git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_tls_cert_federated | v9.0.0 |
@@ -46,6 +47,7 @@
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_dev_subscription_name"></a> [dev\_subscription\_name](#input\_dev\_subscription\_name) | DEV Subscription name | `string` | n/a | yes |
+| <a name="input_devopslab_diego_deploy"></a> [devopslab\_diego\_deploy](#input\_devopslab\_diego\_deploy) | n/a | `map` | <pre>{<br>  "pipeline": {<br>    "name": "devopslab-diego-deploy",<br>    "path": "diego\\devopslab-diego-deploy"<br>  },<br>  "repository": {<br>    "branch_name": "refs/heads/main",<br>    "name": "devopslab-diego-deploy",<br>    "organization": "pagopa",<br>    "pipelines_path": ".devops"<br>  }<br>}</pre> | no |
 | <a name="input_location_northeurope"></a> [location\_northeurope](#input\_location\_northeurope) | n/a | `string` | `""` | no |
 | <a name="input_location_short_northeurope"></a> [location\_short\_northeurope](#input\_location\_short\_northeurope) | n/a | `string` | `""` | no |
 | <a name="input_prefix"></a> [prefix](#input\_prefix) | n/a | `string` | `"dvopla"` | no |

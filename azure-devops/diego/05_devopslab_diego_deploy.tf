@@ -1,10 +1,10 @@
 variable "devopslab_diego_deploy" {
   default = {
     repository = {
-      organization    = "pagopa"
-      name            = "devopslab-diego-deploy"
-      branch_name     = "refs/heads/main"
-      pipelines_path  = ".devops"
+      organization   = "pagopa"
+      name           = "devopslab-diego-deploy"
+      branch_name    = "refs/heads/main"
+      pipelines_path = ".devops"
     }
     pipeline = {
       path = "diego\\devopslab-diego-deploy"
@@ -28,11 +28,11 @@ locals {
 
   # deploy vars
   devopslab_diego_deploy_variables_deploy = {
-    DEV_KUBERNETES_SERVICE_CONN         = azuredevops_serviceendpoint_kubernetes.aks_dev.service_endpoint_name
-    DEV_AGENT_POOL                      = local.azdo_agent_pool_dev
-    ARGOCD_SERVER =  module.domain_dev_secrets.values["argocd-server"].value
-    ARGOCD_USERNAME =  module.domain_dev_secrets.values["argocd-admin-username"].value
-    ARGOCD_PASSWORD =  module.domain_dev_secrets.values["argocd-admin-password"].value
+    DEV_KUBERNETES_SERVICE_CONN = azuredevops_serviceendpoint_kubernetes.aks_dev.service_endpoint_name
+    DEV_AGENT_POOL              = local.azdo_agent_pool_dev
+    ARGOCD_SERVER               = module.domain_dev_secrets.values["argocd-server"].value
+    ARGOCD_USERNAME             = module.domain_dev_secrets.values["argocd-admin-username"].value
+    ARGOCD_PASSWORD             = module.domain_dev_secrets.values["argocd-admin-password"].value
 
   }
 
@@ -41,7 +41,7 @@ locals {
 }
 
 module "devopslab_diego_deploy" {
-  source     = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic?ref=v9.2.1"
+  source = "git::https://github.com/pagopa/azuredevops-tf-modules.git//azuredevops_build_definition_generic?ref=v9.2.1"
 
   project_id                   = data.azuredevops_project.project.project_id
   repository                   = var.devopslab_diego_deploy.repository
@@ -51,9 +51,9 @@ module "devopslab_diego_deploy" {
   pipeline_yml_filename = "deploy.yml"
   path                  = var.devopslab_diego_deploy.pipeline.path
 
-  pull_request_trigger_enabled = true
+  pull_request_trigger_enabled     = true
   pull_request_trigger_auto_cancel = true
-  pull_request_trigger_use_yaml = true
+  pull_request_trigger_use_yaml    = true
 
   variables = merge(
     local.devopslab_diego_deploy_variables,

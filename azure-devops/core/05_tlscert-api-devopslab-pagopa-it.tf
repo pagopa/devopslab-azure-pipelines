@@ -79,7 +79,7 @@ module "tlscert-dev-api-dev-platform-pagopa-it-cert_az" {
   ]
 
   schedules = {
-    days_to_build              = ["Tue","Thu"]
+    days_to_build              = ["Tue", "Thu"]
     schedule_only_with_changes = false
     start_hours                = 13
     start_minutes              = 0

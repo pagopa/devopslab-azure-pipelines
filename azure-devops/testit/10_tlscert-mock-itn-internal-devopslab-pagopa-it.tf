@@ -73,7 +73,7 @@ module "tlscert-mock-itn-internal-devopslab-pagopa-it-cert_az" {
   ]
 
   schedules = {
-    days_to_build              = ["Tue","Thu","Fri"]
+    days_to_build              = ["Tue", "Thu", "Fri"]
     schedule_only_with_changes = false
     start_hours                = 14
     start_minutes              = 0
