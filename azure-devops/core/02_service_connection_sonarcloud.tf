@@ -1,5 +1,5 @@
 locals {
-  azuredevops_serviceendpoint_sonarcloud_token = "ac94be3073c61272d49968a851115595587044cf"
+  azuredevops_serviceendpoint_sonarcloud_token = ""
 }
 
 resource "azuredevops_serviceendpoint_sonarcloud" "sonarcloud" {
